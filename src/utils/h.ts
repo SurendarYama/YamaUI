@@ -7,7 +7,7 @@ type Attr = {
 export const h = (
   $ele: string,
   $attrs: Attr[] | null,
-  $child: Ele | Text | string
+  $child: Ele | Text | string | null
 ): Ele => {
   const element = document.createElement($ele);
   $attrs?.forEach(($attr: Attr) => {
@@ -15,8 +15,10 @@ export const h = (
       element.setAttribute($attrName, $attrValue);
     }
   });
-  typeof $child === "string"
-    ? element.append(document.createTextNode($child))
-    : element.append($child);
+  if ($child) {
+    typeof $child === "string"
+      ? element.append(document.createTextNode($child))
+      : element.append($child);
+  }
   return element;
 };
