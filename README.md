@@ -59,3 +59,33 @@ document.getElementById("app")?.append(
 ### Known Issues
 
 With Icon Button -> icon is not showing when passing same icon instance.
+
+### Accordion
+
+```
+import {accordion } from "@/components";
+
+const items = [
+  {
+    title: "Title 1",
+    content:
+      " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
+    isExpand: false,
+  },
+  {
+    title: "Title 2",
+    content:
+      " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
+    isExpand: false,
+  },
+];
+
+const icons = {
+  collapse: "fa-solid fa-plus",
+  expand: "fa-solid fa-minus",
+};
+const faq = accordion(items, icons);
+
+const app = document.getElementById("app");
+app?.append(fqa)
+```
