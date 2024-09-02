@@ -9,11 +9,28 @@ type AccordionIcons = {
 };
 export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
   const accordionWrapper = document.createElement("div");
-  accordionWrapper.classList.add("w-9/12", "flex", "flex-col", "gap-10");
+  accordionWrapper.classList.add(
+    "w-3/4",
+    "flex",
+    "flex-col",
+    "gap-1",
+    "items-center"
+  );
   $items.map(($item) => {
     const itemWrapper = document.createElement("div");
-    itemWrapper.classList.add("w-3/4");
-    itemWrapper.addEventListener("click", function () {
+    itemWrapper.classList.add(
+      "w-3/4",
+      "bg-gray-200",
+      "p-5",
+      "hover:bg-gray-300"
+    );
+    const itemTitleWrapper = document.createElement("div");
+    itemTitleWrapper.classList.add(
+      "flex",
+      "justify-between",
+      "[&>*:first-child]:hover:underline"
+    );
+    itemTitleWrapper.addEventListener("click", function () {
       if ($item.isExpand) {
         itemContent.classList.remove("flex");
         itemContent.classList.add("hidden");
@@ -22,18 +39,13 @@ export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
         $item.isExpand = !$item.isExpand;
       } else {
         itemContent.classList.remove("hidden");
-        itemContent.classList.add("flex");
+        itemContent.classList.add("flex", "transition", "ease-in-out");
         itemTitleIcon.classList.add("fa-minus");
         itemTitleIcon.classList.remove("fa-plus");
         $item.isExpand = !$item.isExpand;
       }
     });
-    const itemTitleWrapper = document.createElement("div");
-    itemTitleWrapper.classList.add(
-      "flex",
-      "justify-between",
-      "[&>*:first-child]:hover:underline"
-    );
+
     const itemTitle = document.createElement("h6");
     itemTitle.classList.add("hover:cursor-pointer");
     const itemTitleIcon = document.createElement("i");

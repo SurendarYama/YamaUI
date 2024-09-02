@@ -13,11 +13,11 @@ const wrapper = document.createElement("div");
 wrapper.append(icon, span);
 
 const app = document.getElementById("app");
-app?.classList.add("flex", "space-y-5", "flex-col");
+app?.classList.add("flex", "items-center", "space-y-5", "flex-col");
 const withIconBtn = button({
   variant: "with-icon",
   value: wrapper,
-  customCss: "w-32 p-1",
+  customCss: "w-32 p-2",
 });
 const iconBtn = button({
   variant: "icon",
@@ -59,6 +59,12 @@ const items = [
   },
   {
     title: "Title 2",
+    content:
+      " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
+    isExpand: false,
+  },
+  {
+    title: "Title 3",
     content:
       " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     isExpand: false,
