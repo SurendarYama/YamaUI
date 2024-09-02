@@ -3,7 +3,7 @@
 ### Button Component
 
 ```
-    import {button} from "@/components";
+    import { button } from "@/components";
         button({
             variant: "primary",
             value: "Login",
@@ -63,7 +63,7 @@ With Icon Button -> icon is not showing when passing same icon instance.
 ### Accordion
 
 ```
-import {accordion } from "@/components";
+import { accordion } from "@/components";
 
 const items = [
   {
@@ -88,4 +88,20 @@ const faq = accordion(items, icons);
 
 const app = document.getElementById("app");
 app?.append(fqa)
+```
+
+### Alert
+
+```
+import { alert } from "@/components";
+
+const error = alert({
+  icon: "fa-solid fa-triangle-exclamation fa-lg",
+  title: "Error",
+  des: "Your session has expired. Please log in again",
+  customCss: "border-red-500 text-red-500",
+}),
+
+const app = document.getElementById("app");
+app?.append(error)
 ```
