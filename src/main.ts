@@ -52,18 +52,21 @@ const linkBtn = button({
 
 const items = [
   {
+    id: window.crypto.randomUUID(),
     title: "Title 1",
     content:
       " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     isExpand: false,
   },
   {
+    id: window.crypto.randomUUID(),
     title: "Title 2",
     content:
       " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     isExpand: false,
   },
   {
+    id: window.crypto.randomUUID(),
     title: "Title 3",
     content:
       " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
