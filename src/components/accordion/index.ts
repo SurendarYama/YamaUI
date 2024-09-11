@@ -2,7 +2,6 @@ type AccordionItem = {
   id: string;
   title: string;
   content: string;
-  isExpand: boolean;
 };
 type AccordionIcons = {
   collapse: string;
@@ -20,6 +19,7 @@ export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
   $items.map(($item) => {
     const itemWrapper = document.createElement("div");
     itemWrapper.setAttribute("id", $item.id);
+    itemWrapper.dataset.isExpand = "false";
     itemWrapper.classList.add(
       "w-3/4",
       "bg-gray-200",
@@ -32,44 +32,53 @@ export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
       "justify-between",
       "[&>*:first-child]:hover:underline"
     );
-    itemTitleWrapper.addEventListener("click", function () {
-      if ($item.isExpand) {
-        itemContent.classList.remove("flex");
-        itemContent.classList.add("hidden");
-        itemTitleIcon.classList.remove("fa-minus");
-        itemTitleIcon.classList.add("fa-plus");
-      } else {
-        itemContent.classList.remove("hidden");
-        itemContent.classList.add("flex", "transition", "ease-in-out");
-        itemTitleIcon.classList.add("fa-minus");
-        itemTitleIcon.classList.remove("fa-plus");
-      }
-
-      const openedItems = $items.filter(($ci) => $ci.isExpand === true);
-      openedItems.map(($openedItem) => {
-        const oi = document.getElementById($openedItem.id);
-        oi?.lastElementChild?.classList.remove("flex");
-        oi?.lastElementChild?.classList.add("hidden");
-        oi?.firstElementChild?.lastElementChild?.classList.remove("fa-minus");
-        oi?.firstElementChild?.lastElementChild?.classList.add("fa-plus");
-      });
-      $item.isExpand = !$item.isExpand;
-    });
 
     const itemTitle = document.createElement("h6");
     itemTitle.classList.add("hover:cursor-pointer");
     const itemTitleIcon = document.createElement("i");
-    $item.isExpand
+    itemWrapper.dataset.isExpand === "true"
       ? itemTitleIcon.classList.add(...$icons.expand.split(" "))
       : itemTitleIcon.classList.add(...$icons.collapse.split(" "));
     const itemContent = document.createElement("p");
 
     itemContent.classList.add("py-4", "px-2");
-    $item.isExpand
+    itemWrapper.dataset.isExpand === "true"
       ? itemContent.classList.add("flex")
       : itemContent.classList.add("hidden");
     itemTitle.innerText = $item.title;
     itemContent.innerText = $item.content;
+    itemTitleWrapper.addEventListener("click", function () {
+      // first to check => clicked item = current item
+      // auto close previouse item before open the current item
+      const openedItems = document.querySelectorAll("[data-is-expand]");
+      openedItems.forEach((op) => {
+        if (op == itemWrapper) {
+          if (itemWrapper.dataset.isExpand === "false") {
+            itemContent.classList.remove("hidden");
+            itemContent.classList.add("flex");
+            itemTitleIcon.classList.remove(...$icons.collapse.split(" "));
+            itemTitleIcon.classList.add(...$icons.expand.split(" "));
+            itemWrapper.dataset.isExpand = "true";
+          } else {
+            itemContent.classList.remove("flex");
+            itemContent.classList.add("hidden");
+            itemTitleIcon.classList.remove(...$icons.expand.split(" "));
+            itemTitleIcon.classList.add(...$icons.collapse.split(" "));
+            itemWrapper.dataset.isExpand = "false";
+          }
+        } else {
+          const prevOpenedItem = op.lastElementChild;
+          const prevOpenedItemIcon = op?.firstElementChild?.lastElementChild;
+          if (prevOpenedItem) {
+            prevOpenedItem.classList.remove("flex");
+            prevOpenedItem.classList.add("hidden");
+            prevOpenedItemIcon?.classList.remove(...$icons.expand.split(" "));
+            prevOpenedItemIcon?.classList.add(...$icons.collapse.split(" "));
+          }
+          op instanceof HTMLElement && (op.dataset.isExpand = "false");
+        }
+      });
+    });
 
     itemTitleWrapper.append(itemTitle, itemTitleIcon);
     itemWrapper.append(itemTitleWrapper, itemContent);
