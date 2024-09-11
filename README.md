@@ -87,7 +87,7 @@ const icons = {
 const faq = accordion(items, icons);
 
 const app = document.getElementById("app");
-app?.append(fqa)
+app?.append(faq)
 ```
 
 ### Alert
