@@ -1,5 +1,5 @@
 import "./style.css";
-import { button, accordion, alert } from "@/components";
+import { button, accordion, alert, alertDialog } from "@/components";
 
 const iconTwo = document.createElement("i");
 iconTwo.classList.add("fa-brands", "fa-instagram", "fa-xl");
@@ -76,7 +76,36 @@ const icons = {
   expand: "fa-solid fa-minus",
 };
 const faq = accordion(items, icons);
-app?.classList.add("flex", "items-center", "gap-10", "mb-10");
+
+primaryBtn.addEventListener("click", function () {
+  const saveDialog = alertDialog({
+    title: "Heading 1",
+    des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
+    close: {
+      context: "Close",
+      closeCBBtnFn() {
+        document.body.classList.remove("overflow-hidden");
+      },
+    },
+    ok: {
+      context: "Save",
+      okCBBtnFn() {
+        document.body.classList.remove("overflow-hidden");
+      },
+    },
+  });
+
+  document.body.prepend(saveDialog);
+  document.body.classList.add("overflow-hidden");
+});
+app?.classList.add(
+  "flex",
+  "items-center",
+  "justify-center",
+  "gap-10",
+  "mb-10",
+  "z-0"
+);
 app?.append(
   primaryBtn,
   secondaryBtn,

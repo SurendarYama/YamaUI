@@ -105,3 +105,31 @@ const error = alert({
 const app = document.getElementById("app");
 app?.append(error)
 ```
+
+### Alert Dialog
+
+```
+import { button, alertDialog } from "@/components";
+const primaryBtn = button({
+  value: "Save",
+});
+
+primaryBtn.addEventListener("click", function(){
+  const saveDialog = alertDialog({
+    title: "Heading 1",
+    des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
+    close: {
+      context: "Close",
+      closeCBBtnFn() {
+        document.body.classList.remove("overflow-hidden");
+      },
+    },
+    ok: {
+      context: "Save",
+      okCBBtnFn() {
+        document.body.classList.remove("overflow-hidden");
+      },
+    },
+  });
+  document.body.prepend(saveDialog);
+```

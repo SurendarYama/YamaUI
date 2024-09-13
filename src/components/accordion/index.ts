@@ -48,8 +48,6 @@ export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
     itemTitle.innerText = $item.title;
     itemContent.innerText = $item.content;
     itemTitleWrapper.addEventListener("click", function () {
-      // first to check => clicked item = current item
-      // auto close previouse item before open the current item
       const openedItems = document.querySelectorAll("[data-is-expand]");
       openedItems.forEach((op) => {
         if (op == itemWrapper) {
