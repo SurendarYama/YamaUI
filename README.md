@@ -1,4 +1,4 @@
-# MyShopFrontent
+# YamaUI
 
 ### Button Component
 
@@ -122,6 +122,7 @@ primaryBtn.addEventListener("click", function(){
       context: "Close",
       closeCBBtnFn() {
         // do some redirect...
+
       },
     },
     ok: {
