@@ -1,5 +1,9 @@
 # YamaUI
 
+```
+  YamaUI is a typescript component library build on top of tailwindcss.
+```
+
 ### Button Component
 
 ```
