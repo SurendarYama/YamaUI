@@ -51,6 +51,7 @@ export const alertDialog = ({ title, des, close, ok }: AlertDialog) => {
   });
   okBtn.addEventListener("click", () => {
     ok.okCBBtnFn();
+    document.body.classList.remove("overflow-hidden");
     alertDialogWrapper.remove();
   });
   const cancleBtn = button({
@@ -63,6 +64,7 @@ export const alertDialog = ({ title, des, close, ok }: AlertDialog) => {
   }
   cancleBtn.addEventListener("click", () => {
     close.closeCBBtnFn();
+    document.body.classList.remove("overflow-hidden");
     alertDialogWrapper.remove();
   });
 

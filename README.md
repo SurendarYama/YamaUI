@@ -121,13 +121,13 @@ primaryBtn.addEventListener("click", function(){
     close: {
       context: "Close",
       closeCBBtnFn() {
-        document.body.classList.remove("overflow-hidden");
+        // do some redirect...
       },
     },
     ok: {
       context: "Save",
       okCBBtnFn() {
-        document.body.classList.remove("overflow-hidden");
+        // do some redirect...
       },
     },
   });
