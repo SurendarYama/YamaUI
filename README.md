@@ -30,8 +30,8 @@
 #### icon button
 
 ```
-const icon = document.createElement("i");
-icon.classList.add("fa-brands", "fa-instagram", "fa-xl");
+import { createElement, Menu} from "lucide";
+const icon = createElement(Menu)
 
 document.getElementById("app")?.append(
   button({
@@ -44,9 +44,9 @@ document.getElementById("app")?.append(
 #### with icon button
 
 ```
+import { createElement, Menu} from "lucide";
+const icon = createElement(Menu);
 
-const icon = document.createElement("i");
-icon.classList.add("fa-brands", "fa-instagram", "fa-xl");
 const span = document.createElement("span");
 span.append("Text");
 const wrapper = document.createElement("div");
@@ -62,12 +62,13 @@ document.getElementById("app")?.append(
 
 ### Known Issues
 
-With Icon Button -> icon is not showing when passing same icon instance.
+With Icon Button -> icon is not showing when passing same icon instance. // To fix use clone the element.
 
 ### Accordion
 
 ```
 import { accordion } from "@/components";
+import { createElement, Plus, Minus } from "lucide";
 
 const items = [
   {
@@ -85,8 +86,8 @@ const items = [
 ];
 
 const icons = {
-  collapse: "fa-solid fa-plus",
-  expand: "fa-solid fa-minus",
+  collapse: createElement(Plus),
+  expand: createElement(Minus),
 };
 const faq = accordion(items, icons);
 

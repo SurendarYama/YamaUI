@@ -4,8 +4,8 @@ type AccordionItem = {
   content: string;
 };
 type AccordionIcons = {
-  collapse: string;
-  expand: string;
+  collapse: SVGElement;
+  expand: SVGElement;
 };
 export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
   const accordionWrapper = document.createElement("div");
@@ -35,10 +35,10 @@ export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
 
     const itemTitle = document.createElement("h6");
     itemTitle.classList.add("hover:cursor-pointer");
-    const itemTitleIcon = document.createElement("i");
+    const itemTitleIcon = document.createElement("span");
     itemWrapper.dataset.isExpand === "true"
-      ? itemTitleIcon.classList.add(...$icons.expand.split(" "))
-      : itemTitleIcon.classList.add(...$icons.collapse.split(" "));
+      ? itemTitleIcon.append($icons.expand.cloneNode(true))
+      : itemTitleIcon.append($icons.collapse.cloneNode(true));
     const itemContent = document.createElement("p");
 
     itemContent.classList.add("py-4", "px-2");
@@ -54,14 +54,14 @@ export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
           if (itemWrapper.dataset.isExpand === "false") {
             itemContent.classList.remove("hidden");
             itemContent.classList.add("flex");
-            itemTitleIcon.classList.remove(...$icons.collapse.split(" "));
-            itemTitleIcon.classList.add(...$icons.expand.split(" "));
+            itemTitleIcon.children[0].remove();
+            itemTitleIcon.append($icons.expand.cloneNode(true));
             itemWrapper.dataset.isExpand = "true";
           } else {
             itemContent.classList.remove("flex");
             itemContent.classList.add("hidden");
-            itemTitleIcon.classList.remove(...$icons.expand.split(" "));
-            itemTitleIcon.classList.add(...$icons.collapse.split(" "));
+            itemTitleIcon.children[0].remove();
+            itemTitleIcon.append($icons.collapse.cloneNode(true));
             itemWrapper.dataset.isExpand = "false";
           }
         } else {
@@ -70,8 +70,8 @@ export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
           if (prevOpenedItem) {
             prevOpenedItem.classList.remove("flex");
             prevOpenedItem.classList.add("hidden");
-            prevOpenedItemIcon?.classList.remove(...$icons.expand.split(" "));
-            prevOpenedItemIcon?.classList.add(...$icons.collapse.split(" "));
+            prevOpenedItemIcon?.children[0].remove();
+            prevOpenedItemIcon?.append($icons.collapse.cloneNode(true));
           }
           op instanceof HTMLElement && (op.dataset.isExpand = "false");
         }

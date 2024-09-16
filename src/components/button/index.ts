@@ -22,7 +22,7 @@ type ButtonConfig = {
     | "icon"
     | "with-icon"
     | "custom";
-  value: string | HTMLElement;
+  value: string | HTMLElement | SVGElement | Node;
   rounded?: boolean;
   customCss?: string;
 };

@@ -1,16 +1,12 @@
 import "./style.css";
 import { button, accordion, alert, alertDialog } from "@/components";
-
-const iconTwo = document.createElement("i");
-iconTwo.classList.add("fa-brands", "fa-instagram", "fa-xl");
-
-const icon = document.createElement("i");
-icon.classList.add("fa-brands", "fa-instagram", "fa-xl");
+import { createElement, Menu, Plus, Minus } from "lucide";
+const MenuIcon = createElement(Menu);
 
 const span = document.createElement("span");
 span.append("Login");
 const wrapper = document.createElement("div");
-wrapper.append(icon, span);
+wrapper.append(MenuIcon.cloneNode(true), span);
 
 const app = document.getElementById("app");
 app?.classList.add("flex", "items-center", "space-y-5", "flex-col");
@@ -21,7 +17,7 @@ const withIconBtn = button({
 });
 const iconBtn = button({
   variant: "icon",
-  value: iconTwo,
+  value: MenuIcon,
 });
 const primaryBtn = button({
   value: "Login",
@@ -72,8 +68,8 @@ const items = [
 ];
 
 const icons = {
-  collapse: "fa-solid fa-plus",
-  expand: "fa-solid fa-minus",
+  collapse: createElement(Plus),
+  expand: createElement(Minus),
 };
 const faq = accordion(items, icons);
 
