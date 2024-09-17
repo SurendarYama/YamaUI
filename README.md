@@ -125,7 +125,6 @@ primaryBtn.addEventListener("click", function(){
       context: "Close",
       closeBtnCBFn() {
         // do some redirect...
-
       },
     },
     ok: {
