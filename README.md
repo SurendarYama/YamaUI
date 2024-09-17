@@ -2,6 +2,7 @@
 
 ```
   YamaUI is a typescript component library build on top of tailwindcss.
+  Package dependencies: Tailwindcss, Tailwindcss merge, Lucide, Animate.css
 ```
 
 ### Button Component
@@ -59,10 +60,6 @@ document.getElementById("app")?.append(
   })
 );
 ```
-
-### Known Issues
-
-With Icon Button -> icon is not showing when passing same icon instance. // To fix use clone the element.
 
 ### Accordion
 
@@ -138,4 +135,5 @@ primaryBtn.addEventListener("click", function(){
     },
   });
   document.body.prepend(saveDialog);
+});
 ```

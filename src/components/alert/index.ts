@@ -1,5 +1,5 @@
 type Alert = {
-  icon: string;
+  icon: SVGElement;
   title: string;
   des: string;
   customCss: string;
@@ -20,8 +20,8 @@ export const alert = ({ icon, title, des, customCss }: Alert) => {
 
   const alertContentWrapper = document.createElement("div");
   alertContentWrapper.classList.add("flex", "items-center", "gap-2");
-  const alertContentIcon = document.createElement("i");
-  alertContentIcon.classList.add(...icon.split(" "));
+  const alertContentIcon = document.createElement("span");
+  alertContentIcon.append(icon);
 
   const alertContentWrapperTwo = document.createElement("div");
   alertContentWrapperTwo.classList.add("flex", "flex-col");

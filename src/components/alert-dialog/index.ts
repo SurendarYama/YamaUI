@@ -13,7 +13,7 @@ type AlertDialog = {
   };
 };
 
-export const alertDialog = ({ title, des, close, ok }: AlertDialog) => {
+export const alert_dialog = ({ title, des, close, ok }: AlertDialog) => {
   const alertDialogWrapper = document.createElement("div");
   alertDialogWrapper.classList.add(
     "flex",
