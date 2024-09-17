@@ -137,3 +137,15 @@ primaryBtn.addEventListener("click", function(){
   document.body.prepend(saveDialog);
 });
 ```
+
+### Avatar
+
+```
+import { avatar } from "@/components";
+const avatarEl =  avatar({
+    src: "https://avatars.githubusercontent.com/u/125799445?v=4",
+    fallbackText: "SY",
+  })
+
+  document.getElementById('app').append(avatarEl)
+```

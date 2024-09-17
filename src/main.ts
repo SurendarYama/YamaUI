@@ -1,6 +1,6 @@
 import "./style.css";
 import "animate.css";
-import { button, accordion, alert, alert_dialog } from "@/components";
+import { button, accordion, alert, alert_dialog, avatar } from "@/components";
 import {
   createElement,
   Menu,
@@ -134,5 +134,9 @@ app?.append(
     title: "Greetings",
     des: "Have a awesome day",
     customCss: "border-black text-black",
+  }),
+  avatar({
+    src: "https://avatars.githubusercontent.com/u/125799445?v=4",
+    fallbackText: "SY",
   })
 );
