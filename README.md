@@ -112,13 +112,13 @@ app?.append(error)
 ### Alert Dialog
 
 ```
-import { button, alertDialog } from "@/components";
+import { button, alert_dialog } from "@/components";
 const primaryBtn = button({
   value: "Save",
 });
 
 primaryBtn.addEventListener("click", function(){
-  const saveDialog = alertDialog({
+  const saveDialog = alert_dialog({
     title: "Heading 1",
     des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     close: {
