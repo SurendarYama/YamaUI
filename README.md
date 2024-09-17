@@ -149,3 +149,15 @@ const avatarEl =  avatar({
 
   document.getElementById('app').append(avatarEl)
 ```
+
+### Badge
+
+```
+import { badge } from "@/components";
+ document.getElementById('app').append(
+  badge({
+    value: "Badge",
+    customCss: "bg-red-600 hover:bg-red-500 rounded-full",
+  })
+ )
+```

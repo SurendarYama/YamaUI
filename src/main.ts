@@ -1,6 +1,13 @@
 import "./style.css";
 import "animate.css";
-import { button, accordion, alert, alert_dialog, avatar } from "@/components";
+import {
+  button,
+  accordion,
+  alert,
+  alert_dialog,
+  avatar,
+  badge,
+} from "@/components";
 import {
   createElement,
   Menu,
@@ -138,5 +145,9 @@ app?.append(
   avatar({
     src: "https://avatars.githubusercontent.com/u/125799445?v=4",
     fallbackText: "SY",
+  }),
+  badge({
+    value: "Badge",
+    customCss: "bg-red-600 hover:bg-red-500 rounded-full",
   })
 );
