@@ -5,11 +5,11 @@ type AlertDialog = {
   des: string;
   close: {
     context: string;
-    closeCBBtnFn: () => void;
+    closeBtnCBFn: () => void;
   };
   ok: {
     context: string;
-    okCBBtnFn: () => void;
+    okBtnCBFn: () => void;
   };
 };
 
@@ -50,7 +50,7 @@ export const alert_dialog = ({ title, des, close, ok }: AlertDialog) => {
     value: ok.context,
   });
   okBtn.addEventListener("click", () => {
-    ok.okCBBtnFn();
+    ok.okBtnCBFn();
     document.body.classList.remove("overflow-hidden");
     alertDialogWrapper.remove();
   });
@@ -63,7 +63,7 @@ export const alert_dialog = ({ title, des, close, ok }: AlertDialog) => {
     ctaBtn.classList.add("w-64");
   }
   cancleBtn.addEventListener("click", () => {
-    close.closeCBBtnFn();
+    close.closeBtnCBFn();
     document.body.classList.remove("overflow-hidden");
     alertDialogWrapper.remove();
   });

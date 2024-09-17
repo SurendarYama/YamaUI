@@ -88,11 +88,11 @@ primaryBtn.addEventListener("click", function () {
     des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     close: {
       context: "Close",
-      closeCBBtnFn() {},
+      closeBtnCBFn() {},
     },
     ok: {
       context: "Save",
-      okCBBtnFn() {},
+      okBtnCBFn() {},
     },
   });
 
