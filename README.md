@@ -96,9 +96,10 @@ app?.append(faq)
 
 ```
 import { alert } from "@/components";
+import { createElement, TriangleAlert } from "lucide";
 
 const error = alert({
-  icon: "fa-solid fa-triangle-exclamation fa-lg",
+  icon: createElement(TriangleAlert),
   title: "Error",
   des: "Your session has expired. Please log in again",
   customCss: "border-red-500 text-red-500",
