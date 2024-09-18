@@ -7,6 +7,7 @@ import {
   alert_dialog,
   avatar,
   badge,
+  breadcrumb,
 } from "@/components";
 import {
   createElement,
@@ -16,6 +17,7 @@ import {
   Check,
   Handshake,
   TriangleAlert,
+  ChevronRight,
 } from "lucide";
 const MenuIcon = createElement(Menu);
 
@@ -149,5 +151,15 @@ app?.append(
   badge({
     value: "Badge",
     customCss: "bg-red-600 hover:bg-red-500 rounded-full",
-  })
+  }),
+  breadcrumb(
+    [
+      { title: "Home", href: "/home" },
+      { title: "About", href: "/about" },
+      { title: "Contact Us", href: "/contact" },
+      { title: "Projects", href: "/projects" },
+      { title: "Testimonial", href: "/testimonial" },
+    ],
+    createElement(ChevronRight)
+  )
 );
