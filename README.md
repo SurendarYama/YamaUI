@@ -161,3 +161,23 @@ import { badge } from "@/components";
   })
  )
 ```
+
+### Breadcrumb
+
+```
+import { breadcrumb } from "@/components";
+import { ChevronRight } from "lucide";
+
+document.getElementById('app').append(
+  breadcrumb(
+    [
+      { title: "Home", href: "/home" },
+      { title: "About", href: "/about" },
+      { title: "Contact Us", href: "/contact" },
+      { title: "Projects", href: "/projects" },
+      { title: "Testimonial", href: "/testimonial" },
+    ],
+    createElement(ChevronRight)
+  )
+)
+```
