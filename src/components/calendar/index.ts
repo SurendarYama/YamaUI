@@ -9,7 +9,8 @@ export const calendar = () => {
     "rounded",
     "flex",
     "flex-col",
-    "p-2",
+    "py-4",
+    "px-2",
     "gap-2"
   );
   const calendarHeader = document.createElement("div");
@@ -52,8 +53,36 @@ export const calendar = () => {
     dayWrapper.append(day);
     daysWrapper.append(dayWrapper);
   }
+  const startOfMonth = (date: any) =>
+    new Date(date.getFullYear(), date.getMonth(), 1);
+
+  const dayName = (date: any, locale: any = "default") =>
+    date.toLocaleDateString(locale, { weekday: "short" });
+
+  const daysInMonth = (year: number, month: number) =>
+    new Date(year, month, 0).getDate();
+
+  const startDay = dayName(startOfMonth(new Date()));
+  const totalNumberOfDays = daysInMonth(
+    new Date().getFullYear(),
+    new Date().getMonth()
+  );
+
+  const calendarDaysWrapper = document.createElement("div");
+  calendarDaysWrapper.classList.add(
+    "grid",
+    "grid-cols-7",
+    "grid-rows-5",
+    "ml-3",
+    "gap-2"
+  );
+  for (let i = 0; i < 35; i++) {
+    const daySpan = document.createElement("span");
+    daySpan.append((i + 1).toString());
+    calendarDaysWrapper.append(daySpan);
+  }
 
   calendarHeader.append(leftIconButton, currentMonthWrapper, rightIconButton);
-  calendarWrapper.append(calendarHeader, daysWrapper);
+  calendarWrapper.append(calendarHeader, daysWrapper, calendarDaysWrapper);
   return calendarWrapper;
 };

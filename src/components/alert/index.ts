@@ -27,11 +27,11 @@ export const alert = ({ icon, title, des, customCss }: Alert) => {
   alertContentWrapperTwo.classList.add("flex", "flex-col");
 
   const alertTitle = document.createElement("h6");
-  alertTitle.classList.add("font-semibold");
+  alertTitle.classList.add("font-semibold", "text-sm");
   alertTitle.append(title);
 
   const alertDes = document.createElement("p");
-  alertDes.classList.add("text-xs", "font-semibold");
+  alertDes.classList.add("text-xs");
   alertDes.append(des);
   alertContentWrapperTwo.append(alertTitle, alertDes);
   alertContentWrapper.append(alertContentIcon, alertContentWrapperTwo);
