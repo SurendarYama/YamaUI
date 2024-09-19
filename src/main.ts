@@ -8,6 +8,7 @@ import {
   avatar,
   badge,
   breadcrumb,
+  calendar,
 } from "@/components";
 import {
   createElement,
@@ -116,6 +117,7 @@ app?.classList.add(
   "mb-10",
   "z-0"
 );
+
 app?.append(
   primaryBtn,
   secondaryBtn,
@@ -161,5 +163,6 @@ app?.append(
       { title: "Testimonial", href: "/testimonial" },
     ],
     createElement(ChevronRight)
-  )
+  ),
+  calendar()
 );
