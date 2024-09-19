@@ -27,6 +27,7 @@ export const avatar = ({ src, fallbackText }: Avatar) => {
 
   img.addEventListener("error", function () {
     img.remove();
+    ft.remove();
     avatarWrapper.append(ft);
   });
 

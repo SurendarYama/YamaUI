@@ -4,7 +4,7 @@ import { button } from "@/components/button";
 export const calendar = () => {
   const calendarWrapper = document.createElement("div");
   calendarWrapper.classList.add(
-    "size-64",
+    "w-64",
     "border-4",
     "rounded",
     "flex",
@@ -29,7 +29,7 @@ export const calendar = () => {
   const currentMonthWrapper = document.createElement("span");
   currentMonthWrapper.classList.add("flex", "gap-2", "font-bold", "text-sm");
 
-  const currentDate = new Date();
+  let currentDate = new Date();
   let currentMonthName = (currentDate: any) =>
     currentDate.toLocaleString("default", {
       month: "long",
@@ -53,20 +53,6 @@ export const calendar = () => {
     dayWrapper.append(day);
     daysWrapper.append(dayWrapper);
   }
-  const startOfMonth = (date: any) =>
-    new Date(date.getFullYear(), date.getMonth(), 1);
-
-  const dayName = (date: any, locale: any = "default") =>
-    date.toLocaleDateString(locale, { weekday: "short" });
-
-  const daysInMonth = (year: number, month: number) =>
-    new Date(year, month, 0).getDate();
-
-  const startDay = dayName(startOfMonth(new Date()));
-  const totalNumberOfDays = daysInMonth(
-    new Date().getFullYear(),
-    new Date().getMonth()
-  );
 
   const calendarDaysWrapper = document.createElement("div");
   calendarDaysWrapper.classList.add(
@@ -76,11 +62,93 @@ export const calendar = () => {
     "ml-3",
     "gap-2"
   );
-  for (let i = 0; i < 35; i++) {
-    const daySpan = document.createElement("span");
-    daySpan.append((i + 1).toString());
-    calendarDaysWrapper.append(daySpan);
-  }
+
+  const createDatesArray = (date: any) => {
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    const getDaysArray = function (start: any, end: any) {
+      const arr = [];
+      for (
+        const dt = new Date(start);
+        dt <= new Date(end);
+        dt.setDate(dt.getDate() + 1)
+      ) {
+        arr.push(new Date(dt));
+      }
+      return arr;
+    };
+    return getDaysArray(firstDay, lastDay);
+  };
+
+  const datesArray = createDatesArray(currentDate);
+
+  const getDisplayDatesArray = (dates: any) => {
+    const dayName = (date: any, locale: string = "default") =>
+      date.toLocaleDateString(locale, { weekday: "short" });
+    if (dayName(dates[0]) === "Sun") {
+      return [...dates];
+    } else if (dayName(dates[0]) === "Mon") {
+      return ["", ...dates];
+    } else if (dayName(dates[0]) === "Tue") {
+      return ["", "", ...dates];
+    } else if (dayName(dates[0]) === "Wed") {
+      return ["", "", "", ...dates];
+    } else if (dayName(dates[0]) === "Thu") {
+      return ["", "", "", "", ...dates];
+    } else if (dayName(dates[0]) === "Fri") {
+      return ["", "", "", "", "", ...dates];
+    } else {
+      return ["", "", "", "", "", "", ...dates];
+    }
+  };
+
+  const resultDates = getDisplayDatesArray(datesArray);
+  const appendDates = (rds: any) => {
+    for (const rd of rds) {
+      const resultDateSpan = document.createElement("span");
+      resultDateSpan.classList.add("text-center");
+      resultDateSpan.dataset.date = rd;
+      const r = typeof rd === "string" ? rd : rd.getDate();
+      resultDateSpan.append(r);
+      resultDateSpan.addEventListener("click", function () {
+        resultDateSpan.classList.toggle("selected-date");
+      });
+      calendarDaysWrapper.append(resultDateSpan);
+    }
+  };
+  appendDates(resultDates);
+
+  leftIconButton.addEventListener("click", () => {
+    currentDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 1,
+      1
+    );
+    month.innerText = "";
+    month.append(currentMonthName(currentDate));
+    year.innerText = "";
+    year.append(currentDate.getFullYear().toString());
+    const prevDatesArray = createDatesArray(currentDate);
+    const prevResultDates = getDisplayDatesArray(prevDatesArray);
+    calendarDaysWrapper.innerHTML = "";
+    appendDates(prevResultDates);
+  });
+  rightIconButton.addEventListener("click", () => {
+    currentDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+      1
+    );
+    month.innerText = "";
+    month.append(currentMonthName(currentDate));
+    year.innerText = "";
+    year.append(currentDate.getFullYear().toString());
+    const nextDatesArray = createDatesArray(currentDate);
+    const nextResultDates = getDisplayDatesArray(nextDatesArray);
+    calendarDaysWrapper.innerHTML = "";
+    appendDates(nextResultDates);
+  });
 
   calendarHeader.append(leftIconButton, currentMonthWrapper, rightIconButton);
   calendarWrapper.append(calendarHeader, daysWrapper, calendarDaysWrapper);
