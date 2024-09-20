@@ -1,7 +1,7 @@
 import { createElement, ChevronLeft, ChevronRight } from "lucide";
 import { button } from "@/components/button";
 
-export const calendar = (onClick: (value: any[]) => void) => {
+export const calendar = (onClick: (value: any) => void) => {
   const calendarWrapper = document.createElement("div");
   calendarWrapper.classList.add(
     "w-64",
