@@ -181,3 +181,11 @@ document.getElementById('app').append(
   )
 )
 ```
+
+### Calendar
+
+```
+import { calendar } from "@/components";
+
+document.getElementById('app').append(calendar(console.log));
+```

@@ -37,7 +37,9 @@ const withIconBtn = button({
 const iconBtn = button({
   variant: "icon",
   value: MenuIcon,
+  customCss: "relative",
 });
+
 const primaryBtn = button({
   value: "Login",
 });
@@ -164,5 +166,5 @@ app?.append(
     ],
     createElement(ChevronRight)
   ),
-  calendar()
+  calendar(console.log)
 );

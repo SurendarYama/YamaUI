@@ -1,7 +1,7 @@
 import { createElement, ChevronLeft, ChevronRight } from "lucide";
 import { button } from "@/components/button";
 
-export const calendar = () => {
+export const calendar = (onClick: (value: any[]) => void) => {
   const calendarWrapper = document.createElement("div");
   calendarWrapper.classList.add(
     "w-64",
@@ -30,7 +30,7 @@ export const calendar = () => {
   currentMonthWrapper.classList.add("flex", "gap-2", "font-bold", "text-sm");
 
   let currentDate = new Date();
-  let currentMonthName = (currentDate: any) =>
+  let currentMonthName = (currentDate: Date) =>
     currentDate.toLocaleString("default", {
       month: "long",
     });
@@ -63,11 +63,11 @@ export const calendar = () => {
     "gap-2"
   );
 
-  const createDatesArray = (date: any) => {
+  const createDatesArray = (date: Date) => {
     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-    const getDaysArray = function (start: any, end: any) {
+    const getDaysArray = function (start: Date, end: Date) {
       const arr = [];
       for (
         const dt = new Date(start);
@@ -83,8 +83,8 @@ export const calendar = () => {
 
   const datesArray = createDatesArray(currentDate);
 
-  const getDisplayDatesArray = (dates: any) => {
-    const dayName = (date: any, locale: string = "default") =>
+  const getDisplayDatesArray = (dates: Date[]) => {
+    const dayName = (date: Date, locale: string = "default") =>
       date.toLocaleDateString(locale, { weekday: "short" });
     if (dayName(dates[0]) === "Sun") {
       return [...dates];
@@ -107,12 +107,15 @@ export const calendar = () => {
   const appendDates = (rds: any) => {
     for (const rd of rds) {
       const resultDateSpan = document.createElement("span");
-      resultDateSpan.classList.add("text-center");
+      resultDateSpan.classList.add("text-center", "hover:cursor-pointer");
       resultDateSpan.dataset.date = rd;
       const r = typeof rd === "string" ? rd : rd.getDate();
       resultDateSpan.append(r);
       resultDateSpan.addEventListener("click", function () {
-        resultDateSpan.classList.toggle("selected-date");
+        if (resultDateSpan.innerText !== "") {
+          resultDateSpan.classList.toggle("selected-date");
+          onClick(rd);
+        }
       });
       calendarDaysWrapper.append(resultDateSpan);
     }
