@@ -3,7 +3,7 @@ import "animate.css";
 import {
   button,
   accordion,
-  alert,
+  alert as Alert,
   alert_dialog,
   avatar,
   badge,
@@ -19,6 +19,7 @@ import {
   Handshake,
   TriangleAlert,
   ChevronRight,
+  Calendar,
 } from "lucide";
 const MenuIcon = createElement(Menu);
 
@@ -37,7 +38,6 @@ const withIconBtn = button({
 const iconBtn = button({
   variant: "icon",
   value: MenuIcon,
-  customCss: "relative",
 });
 
 const primaryBtn = button({
@@ -111,6 +111,26 @@ primaryBtn.addEventListener("click", function () {
   document.body.prepend(saveDialog);
   document.body.classList.add("overflow-hidden");
 });
+
+const calendarIconBtn = button({
+  variant: "icon",
+  value: createElement(Calendar),
+  customCss: "relative z-10",
+});
+
+calendarIconBtn.addEventListener("click", () => {
+  if (!document.getElementById("calendar")) {
+    const calendarEl = calendar(function (value) {
+      alert(value);
+    });
+    calendarEl.setAttribute("id", "calendar");
+    calendarEl.classList.add("absolute", "z-10");
+    calendarIconBtn.append(calendarEl);
+  } else {
+    document.getElementById("calendar")?.remove();
+  }
+});
+
 app?.classList.add(
   "flex",
   "items-center",
@@ -130,19 +150,19 @@ app?.append(
   linkBtn,
   iconBtn,
   faq,
-  alert({
+  Alert({
     icon: createElement(TriangleAlert),
     title: "Error",
     des: "Your session has expired. Please log in again",
     customCss: "border-red-500 text-red-500",
   }),
-  alert({
+  Alert({
     icon: createElement(Check),
     title: "Success",
     des: "Log in successfully...",
     customCss: "border-green-500 text-green-500",
   }),
-  alert({
+  Alert({
     icon: createElement(Handshake),
     title: "Greetings",
     des: "Have a awesome day",
@@ -166,5 +186,5 @@ app?.append(
     ],
     createElement(ChevronRight)
   ),
-  calendar(console.log)
+  calendarIconBtn
 );

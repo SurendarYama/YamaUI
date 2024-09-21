@@ -11,7 +11,8 @@ export const calendar = (onClick: (value: any) => void) => {
     "flex-col",
     "py-4",
     "px-2",
-    "gap-2"
+    "gap-2",
+    "bg-white"
   );
   const calendarHeader = document.createElement("div");
   calendarHeader.classList.add("flex", "items-center", "justify-between");
@@ -107,16 +108,21 @@ export const calendar = (onClick: (value: any) => void) => {
   const appendDates = (rds: any) => {
     for (const rd of rds) {
       const resultDateSpan = document.createElement("span");
-      resultDateSpan.classList.add("text-center", "hover:cursor-pointer");
+      resultDateSpan.classList.add(
+        "text-center",
+        "hover:cursor-pointer",
+        "hover:rounded-full",
+        "hover:bg-black",
+        "hover:size-6",
+        "hover:text-white"
+      );
       resultDateSpan.dataset.date = rd;
       const r = typeof rd === "string" ? rd : rd.getDate();
       resultDateSpan.append(r);
-      resultDateSpan.addEventListener("click", function () {
-        if (resultDateSpan.innerText !== "") {
-          resultDateSpan.classList.toggle("selected-date");
-          onClick(rd);
-        }
-      });
+      resultDateSpan.addEventListener(
+        "click",
+        () => resultDateSpan.innerText !== "" && onClick(rd)
+      );
       calendarDaysWrapper.append(resultDateSpan);
     }
   };

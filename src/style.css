@@ -22,6 +22,4 @@
   --animate-delay: 1s;
 }
 
-.selected-date {
-  @apply rounded-full bg-black size-6 text-white;
-}
+

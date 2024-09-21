@@ -185,7 +185,26 @@ document.getElementById('app').append(
 ### Calendar
 
 ```
-import { calendar } from "@/components";
+import { button, calendar } from "@/components";
+import { createElement, Calendar } from "lucide";
+const calendarIconBtn = button({
+  variant: "icon",
+  value: createElement(Calendar),
+  customCss: "relative z-10",
+});
 
-document.getElementById('app').append(calendar(console.log));
+calendarIconBtn.addEventListener("click", () => {
+  if (!document.getElementById("calendar")) {
+    const calendarEl = calendar(function (value) {
+      alert(value);
+    });
+    calendarEl.setAttribute("id", "calendar");
+    calendarEl.classList.add("absolute", "z-10");
+    calendarIconBtn.append(calendarEl);
+  } else {
+    document.getElementById("calendar")?.remove();
+  }
+});
+
+document.getElementById('app').append(calendarIconBtn);
 ```
