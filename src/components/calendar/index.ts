@@ -1,8 +1,9 @@
 import { createElement, ChevronLeft, ChevronRight } from "lucide";
-import { button } from "@/components/button";
+import { Button } from "@/components/button";
 
-export const calendar = (onClick: (value: any) => void) => {
+export const Calendar = (onClick: (value: any) => void) => {
   const calendarWrapper = document.createElement("div");
+  calendarWrapper.addEventListener("click", (e: Event) => e.stopPropagation());
   calendarWrapper.classList.add(
     "w-64",
     "border-4",
@@ -16,12 +17,12 @@ export const calendar = (onClick: (value: any) => void) => {
   );
   const calendarHeader = document.createElement("div");
   calendarHeader.classList.add("flex", "items-center", "justify-between");
-  const leftIconButton = button({
+  const leftIconButton = Button({
     variant: "icon",
     value: createElement(ChevronLeft),
     customCss: "p-0 text-gray-500",
   });
-  const rightIconButton = button({
+  const rightIconButton = Button({
     variant: "icon",
     value: createElement(ChevronRight),
     customCss: "p-0 text-gray-500",
@@ -119,16 +120,18 @@ export const calendar = (onClick: (value: any) => void) => {
       resultDateSpan.dataset.date = rd;
       const r = typeof rd === "string" ? rd : rd.getDate();
       resultDateSpan.append(r);
-      resultDateSpan.addEventListener(
-        "click",
-        () => resultDateSpan.innerText !== "" && onClick(rd)
-      );
+      resultDateSpan.addEventListener("click", (e: Event) => {
+        e.stopPropagation();
+        resultDateSpan.innerText !== "" && onClick(rd);
+        document.getElementById("calendar")?.remove();
+      });
       calendarDaysWrapper.append(resultDateSpan);
     }
   };
   appendDates(resultDates);
 
-  leftIconButton.addEventListener("click", () => {
+  leftIconButton.addEventListener("click", (e: Event) => {
+    e.stopPropagation();
     currentDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth() - 1,
@@ -143,7 +146,8 @@ export const calendar = (onClick: (value: any) => void) => {
     calendarDaysWrapper.innerHTML = "";
     appendDates(prevResultDates);
   });
-  rightIconButton.addEventListener("click", () => {
+  rightIconButton.addEventListener("click", (e: Event) => {
+    e.stopPropagation();
     currentDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth() + 1,

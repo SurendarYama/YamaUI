@@ -1,11 +1,11 @@
-type Alert = {
+type AlertType = {
   icon: SVGElement;
   title: string;
   des: string;
   customCss: string;
 };
 
-export const alert = ({ icon, title, des, customCss }: Alert) => {
+export const Alert = ({ icon, title, des, customCss }: AlertType) => {
   const alertWrapper = document.createElement("div");
   alertWrapper.classList.add(
     "w-1/4",

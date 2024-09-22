@@ -7,7 +7,7 @@ type AccordionIcons = {
   collapse: SVGElement;
   expand: SVGElement;
 };
-export const accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
+export const Accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
   const accordionWrapper = document.createElement("div");
   accordionWrapper.classList.add(
     "w-3/4",

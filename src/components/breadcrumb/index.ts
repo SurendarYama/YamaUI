@@ -1,12 +1,12 @@
 import { createElement, Ellipsis } from "lucide";
-import { button } from "@/components/button";
+import { Button } from "@/components/button";
 
 type BreadcrumbItem = {
   title: string;
   href: string;
 };
 
-export const breadcrumb = (
+export const Breadcrumb = (
   $breadcrumbItems: BreadcrumbItem[],
   $breadcrumbIcon: SVGElement
 ) => {
@@ -29,7 +29,7 @@ export const breadcrumb = (
     for (const [$dpItemIndex, $dpItem] of displayItems.entries()) {
       const breadcrumbDisplayItemWrapper = document.createElement("div");
       breadcrumbDisplayItemWrapper.classList.add("flex", "items-center");
-      const breadcrumbDisplayItemLink = button({
+      const breadcrumbDisplayItemLink = Button({
         variant: "link",
         value: $dpItem.title,
         customCss: "p-2 text-sm",
@@ -93,7 +93,7 @@ export const breadcrumb = (
     for (const [$index, $breadcrumbItem] of $breadcrumbItems.entries()) {
       const breadcrumbItemWrapper = document.createElement("div");
       breadcrumbItemWrapper.classList.add("flex");
-      const breadcrumbItemLink = button({
+      const breadcrumbItemLink = Button({
         variant: "link",
         value: $breadcrumbItem.title,
         customCss: "p-2 text-sm",

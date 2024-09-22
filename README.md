@@ -8,8 +8,8 @@
 ### Button Component
 
 ```
-    import { button } from "@/components";
-        button({
+    import { Button } from "@/components";
+        Button({
             variant: "primary",
             value: "Login",
             rounded: true,
@@ -35,7 +35,7 @@ import { createElement, Menu} from "lucide";
 const icon = createElement(Menu)
 
 document.getElementById("app")?.append(
-  button({
+  Button({
     variant: "icon",
     value: icon,
   })
@@ -54,7 +54,7 @@ const wrapper = document.createElement("div");
 wrapper.append(icon, span);
 
 document.getElementById("app")?.append(
-  button({
+  Button({
     variant: "with-icon",
     value: wrapper,
   })
@@ -64,7 +64,7 @@ document.getElementById("app")?.append(
 ### Accordion
 
 ```
-import { accordion } from "@/components";
+import { Accordion } from "@/components";
 import { createElement, Plus, Minus } from "lucide";
 
 const items = [
@@ -86,7 +86,7 @@ const icons = {
   collapse: createElement(Plus),
   expand: createElement(Minus),
 };
-const faq = accordion(items, icons);
+const faq = Accordion(items, icons);
 
 const app = document.getElementById("app");
 app?.append(faq)
@@ -95,10 +95,10 @@ app?.append(faq)
 ### Alert
 
 ```
-import { alert } from "@/components";
+import { Alert } from "@/components";
 import { createElement, TriangleAlert } from "lucide";
 
-const error = alert({
+const error = Alert({
   icon: createElement(TriangleAlert),
   title: "Error",
   des: "Your session has expired. Please log in again",
@@ -112,13 +112,13 @@ app?.append(error)
 ### Alert Dialog
 
 ```
-import { button, alert_dialog } from "@/components";
-const primaryBtn = button({
+import { Button, Alert_Dialog } from "@/components";
+const primaryBtn = Button({
   value: "Save",
 });
 
 primaryBtn.addEventListener("click", function(){
-  const saveDialog = alert_dialog({
+  const saveDialog = Alert_Dialog({
     title: "Heading 1",
     des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     close: {
@@ -141,8 +141,8 @@ primaryBtn.addEventListener("click", function(){
 ### Avatar
 
 ```
-import { avatar } from "@/components";
-const avatarEl =  avatar({
+import { Avatar } from "@/components";
+const avatarEl =  Avatar({
     src: "https://avatars.githubusercontent.com/u/125799445?v=4",
     fallbackText: "SY",
   })
@@ -153,9 +153,9 @@ const avatarEl =  avatar({
 ### Badge
 
 ```
-import { badge } from "@/components";
+import { Badge } from "@/components";
  document.getElementById('app').append(
-  badge({
+  Badge({
     value: "Badge",
     customCss: "bg-red-600 hover:bg-red-500 rounded-full",
   })
@@ -165,11 +165,11 @@ import { badge } from "@/components";
 ### Breadcrumb
 
 ```
-import { breadcrumb } from "@/components";
+import { Breadcrumb } from "@/components";
 import { ChevronRight } from "lucide";
 
 document.getElementById('app').append(
-  breadcrumb(
+  Breadcrumb(
     [
       { title: "Home", href: "/home" },
       { title: "About", href: "/about" },
@@ -185,17 +185,17 @@ document.getElementById('app').append(
 ### Calendar
 
 ```
-import { button, calendar } from "@/components";
-import { createElement, Calendar } from "lucide";
-const calendarIconBtn = button({
+import { Button, Calendar } from "@/components";
+import { createElement, Calendar as CalendarIcon } from "lucide";
+const calendarIconBtn = Button({
   variant: "icon",
-  value: createElement(Calendar),
+  value: createElement(CalendarIcon),
   customCss: "relative z-10",
 });
 
 calendarIconBtn.addEventListener("click", () => {
   if (!document.getElementById("calendar")) {
-    const calendarEl = calendar(function (value) {
+    const calendarEl = Calendar(function (value) {
       alert(value);
     });
     calendarEl.setAttribute("id", "calendar");

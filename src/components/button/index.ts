@@ -27,7 +27,7 @@ type ButtonConfig = {
   customCss?: string;
 };
 
-export const button = ({
+export const Button = ({
   variant = "primary",
   value,
   rounded = false,

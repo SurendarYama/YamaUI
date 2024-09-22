@@ -1,9 +1,9 @@
-type Avatar = {
+type AvatarType = {
   src: string;
   fallbackText: string;
 };
 
-export const avatar = ({ src, fallbackText }: Avatar) => {
+export const Avatar = ({ src, fallbackText }: AvatarType) => {
   const avatarWrapper = document.createElement("div");
   avatarWrapper.classList.add(
     "size-12",

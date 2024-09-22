@@ -1,8 +1,8 @@
-export { button } from "@/components/button";
-export { accordion } from "@/components/accordion";
-export { alert } from "@/components/alert";
-export { alert_dialog } from "@/components/alert-dialog";
-export { avatar } from "@/components/avatar";
-export { badge } from "@/components/badge";
-export { breadcrumb } from "@/components/breadcrumb";
-export { calendar } from "@/components/calendar";
+export { Button } from "@/components/button";
+export { Accordion } from "@/components/accordion";
+export { Alert } from "@/components/alert";
+export { Alert_Dialog } from "@/components/alert-dialog";
+export { Avatar } from "@/components/avatar";
+export { Badge } from "@/components/badge";
+export { Breadcrumb } from "@/components/breadcrumb";
+export { Calendar } from "@/components/calendar";

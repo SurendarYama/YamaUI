@@ -1,14 +1,14 @@
 import "./style.css";
 import "animate.css";
 import {
-  button,
-  accordion,
-  alert as Alert,
-  alert_dialog,
-  avatar,
-  badge,
-  breadcrumb,
-  calendar,
+  Button,
+  Accordion,
+  Alert,
+  Alert_Dialog,
+  Avatar,
+  Badge,
+  Breadcrumb,
+  Calendar,
 } from "@/components";
 import {
   createElement,
@@ -19,7 +19,7 @@ import {
   Handshake,
   TriangleAlert,
   ChevronRight,
-  Calendar,
+  Calendar as CalendarIcon,
 } from "lucide";
 const MenuIcon = createElement(Menu);
 
@@ -30,39 +30,39 @@ wrapper.append(MenuIcon.cloneNode(true), span);
 
 const app = document.getElementById("app");
 app?.classList.add("flex", "items-center", "space-y-5", "flex-col");
-const withIconBtn = button({
+const withIconBtn = Button({
   variant: "with-icon",
   value: wrapper,
   customCss: "w-32 p-2",
 });
-const iconBtn = button({
+const iconBtn = Button({
   variant: "icon",
   value: MenuIcon,
 });
 
-const primaryBtn = button({
+const primaryBtn = Button({
   value: "Login",
 });
-const secondaryBtn = button({
+const secondaryBtn = Button({
   variant: "secondary",
   value: "Login",
 });
-const destructiveBtn = button({
+const destructiveBtn = Button({
   variant: "destructive",
   value: "Login",
 });
 
-const outlineBtn = button({
+const outlineBtn = Button({
   variant: "outline",
   value: "Login",
 });
 
-const ghostBtn = button({
+const ghostBtn = Button({
   variant: "ghost",
   value: "Login",
 });
 
-const linkBtn = button({
+const linkBtn = Button({
   variant: "link",
   value: "Login",
 });
@@ -92,10 +92,10 @@ const icons = {
   collapse: createElement(Plus),
   expand: createElement(Minus),
 };
-const faq = accordion(items, icons);
+const faq = Accordion(items, icons);
 
 primaryBtn.addEventListener("click", function () {
-  const saveDialog = alert_dialog({
+  const saveDialog = Alert_Dialog({
     title: "Heading 1",
     des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     close: {
@@ -112,15 +112,15 @@ primaryBtn.addEventListener("click", function () {
   document.body.classList.add("overflow-hidden");
 });
 
-const calendarIconBtn = button({
+const calendarIconBtn = Button({
   variant: "icon",
-  value: createElement(Calendar),
+  value: createElement(CalendarIcon),
   customCss: "relative z-10",
 });
 
 calendarIconBtn.addEventListener("click", () => {
   if (!document.getElementById("calendar")) {
-    const calendarEl = calendar(function (value) {
+    const calendarEl = Calendar(function (value) {
       alert(value);
     });
     calendarEl.setAttribute("id", "calendar");
@@ -168,15 +168,15 @@ app?.append(
     des: "Have a awesome day",
     customCss: "border-black text-black",
   }),
-  avatar({
+  Avatar({
     src: "https://avatars.githubusercontent.com/u/125799445?v=4",
     fallbackText: "SY",
   }),
-  badge({
+  Badge({
     value: "Badge",
     customCss: "bg-red-600 hover:bg-red-500 rounded-full",
   }),
-  breadcrumb(
+  Breadcrumb(
     [
       { title: "Home", href: "/home" },
       { title: "About", href: "/about" },
