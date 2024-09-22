@@ -115,7 +115,7 @@ primaryBtn.addEventListener("click", function () {
 const calendarIconBtn = Button({
   variant: "icon",
   value: createElement(CalendarIcon),
-  customCss: "relative z-10",
+  customCss: "relative",
 });
 
 calendarIconBtn.addEventListener("click", () => {

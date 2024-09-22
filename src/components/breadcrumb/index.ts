@@ -53,7 +53,8 @@ export const Breadcrumb = (
               "border-2",
               "p-4",
               "gap-2",
-              "absolute"
+              "absolute",
+              "z-50"
             );
             for (const rdpItem of remainingDropdownItems) {
               const dropdownWrapperItem = document.createElement("span");
