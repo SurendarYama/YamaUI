@@ -41,12 +41,7 @@ export const Accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
       : itemTitleIcon.append($icons.collapse.cloneNode(true));
     const itemContent = document.createElement("p");
 
-    itemContent.classList.add(
-      "py-4",
-      "px-2",
-      "animate__animated",
-      "animate__fadeInDown"
-    );
+    itemContent.classList.add("py-4", "px-2");
     itemWrapper.dataset.isExpand === "true"
       ? itemContent.classList.add("flex")
       : itemContent.classList.add("hidden");

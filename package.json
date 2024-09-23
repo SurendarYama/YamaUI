@@ -21,7 +21,6 @@
     "url": "https://surendaryama.github.io"
   },
   "dependencies": {
-    "animate.css": "^4.1.1",
     "lucide": "^0.441.0",
     "tailwind-merge": "^2.5.2"
   }

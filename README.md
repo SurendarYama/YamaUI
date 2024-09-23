@@ -2,7 +2,7 @@
 
 ```
   YamaUI is a typescript component library build on top of tailwindcss.
-  Package dependencies: Tailwindcss, Tailwindcss merge, Lucide, Animate.css
+  Package dependencies: Tailwindcss, Tailwindcss merge, and Lucide.
 ```
 
 ### Button Component
