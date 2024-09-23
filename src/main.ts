@@ -1,5 +1,4 @@
 import "./style.css";
-import "animate.css";
 import {
   Button,
   Accordion,
