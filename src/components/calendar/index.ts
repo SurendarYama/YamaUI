@@ -109,15 +109,20 @@ export const Calendar = (onClick: (value: any) => void) => {
   const appendDates = (rds: any) => {
     for (const rd of rds) {
       const resultDateSpan = document.createElement("span");
-      resultDateSpan.classList.add(
-        "text-center",
-        "hover:cursor-pointer",
-        "hover:rounded-full",
-        "hover:bg-black",
-        "hover:size-6",
-        "hover:text-white"
-      );
+
       resultDateSpan.dataset.date = rd;
+
+      if (typeof rd === "object") {
+        resultDateSpan.classList.add(
+          "text-center",
+          "hover:cursor-pointer",
+          "hover:rounded-full",
+          "hover:bg-black",
+          "hover:size-6",
+          "hover:text-white"
+        );
+      }
+
       const r = typeof rd === "string" ? rd : rd.getDate();
       resultDateSpan.append(r);
       resultDateSpan.addEventListener("click", (e: Event) => {
