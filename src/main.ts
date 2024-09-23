@@ -168,9 +168,14 @@ app?.append(
     des: "Have a awesome day",
     customCss: "border-black text-black",
   }),
+
   Avatar({
     src: "https://avatars.githubusercontent.com/u/125799445?v=4",
     fallbackText: "SY",
+    customCss: {
+      container: "size-14",
+      avatar: "size-14",
+    },
   }),
   Badge({
     value: "Badge",

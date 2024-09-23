@@ -142,9 +142,13 @@ primaryBtn.addEventListener("click", function(){
 
 ```
 import { Avatar } from "@/components";
-const avatarEl =  Avatar({
+const avatarEl =   Avatar({
     src: "https://avatars.githubusercontent.com/u/125799445?v=4",
     fallbackText: "SY",
+    customCss: {
+      container: "size-14",
+      avatar: "size-14",
+    },
   })
 
   document.getElementById('app').append(avatarEl)
