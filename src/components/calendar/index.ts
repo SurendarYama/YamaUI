@@ -113,6 +113,15 @@ export const Calendar = (onClick: (value: any) => void) => {
       resultDateSpan.dataset.date = rd;
 
       if (typeof rd === "object") {
+        new Date().toDateString() === new Date(rd).toDateString() &&
+          resultDateSpan.classList.add(
+            "text-center",
+            "cursor-pointer",
+            "rounded-full",
+            "bg-rose-600",
+            "size-6",
+            "text-white"
+          );
         resultDateSpan.classList.add(
           "text-center",
           "hover:cursor-pointer",
