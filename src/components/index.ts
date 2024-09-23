@@ -6,3 +6,4 @@ export { Avatar } from "@/components/avatar";
 export { Badge } from "@/components/badge";
 export { Breadcrumb } from "@/components/breadcrumb";
 export { Calendar } from "@/components/calendar";
+export { Card } from "@/components/card";

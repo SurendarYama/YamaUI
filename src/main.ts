@@ -9,6 +9,7 @@ import {
   Badge,
   Breadcrumb,
   Calendar,
+  Card,
 } from "@/components";
 import {
   createElement,
@@ -186,5 +187,6 @@ app?.append(
     ],
     createElement(ChevronRight)
   ),
-  calendarIconBtn
+  calendarIconBtn,
+  Card()
 );
