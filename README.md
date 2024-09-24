@@ -215,3 +215,17 @@ calendarIconBtn.addEventListener("click", () => {
 
 document.getElementById('app').append(calendarIconBtn);
 ```
+
+### Card
+
+```
+import { Card } from "@/components";
+
+const cardChild = document.createElement("div");
+cardChild.innerText = "Card";
+
+document.getElementBy("app)?.append(  Card({
+    child: cardChild,
+    customCss: "text-purple-600 font-extrabold text-center",
+  }));
+```

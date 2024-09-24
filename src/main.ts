@@ -133,6 +133,8 @@ calendarIconBtn.addEventListener("click", () => {
   }
 });
 
+const cardChild = document.createElement("div");
+cardChild.innerText = "Card";
 app?.classList.add(
   "flex",
   "items-center",
@@ -194,5 +196,8 @@ app?.append(
     createElement(ChevronRight)
   ),
   calendarIconBtn,
-  Card()
+  Card({
+    child: cardChild,
+    customCss: "text-purple-600 font-extrabold text-center",
+  })
 );
