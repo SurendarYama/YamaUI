@@ -138,7 +138,6 @@ export const Calendar = (onClick: (value: any) => void) => {
       resultDateSpan.addEventListener("click", (e: Event) => {
         e.stopPropagation();
         resultDateSpan.innerText !== "" && onClick(rd);
-        document.getElementById("calendar")?.remove();
       });
       calendarDaysWrapper.append(resultDateSpan);
     }

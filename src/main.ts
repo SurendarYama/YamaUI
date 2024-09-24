@@ -119,15 +119,17 @@ const calendarIconBtn = Button({
 });
 
 calendarIconBtn.addEventListener("click", () => {
-  if (!document.getElementById("calendar")) {
+  const calendarElRef = document.getElementById("calendar");
+  if (!calendarElRef) {
     const calendarEl = Calendar(function (value) {
       alert(value);
+      calendarEl?.remove();
     });
     calendarEl.setAttribute("id", "calendar");
     calendarEl.classList.add("absolute", "z-10");
     calendarIconBtn.append(calendarEl);
   } else {
-    document.getElementById("calendar")?.remove();
+    calendarElRef?.remove();
   }
 });
 
