@@ -243,3 +243,14 @@ document.getElementBy("app")?.append(Checkbox({
     onCheck: (e) => console.log(e.currentTarget.checked),
   }));
 ```
+
+### Collapsiable
+
+```
+import { Collapsiable } from "@/components";
+ document.getElementById("app")?.append(Collapsible("@peduarte starred 3 repositories", [
+    "@radix-ui/primitives",
+    "@radix-ui/colors",
+    "@stitches/react",
+  ]));
+```

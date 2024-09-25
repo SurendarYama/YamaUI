@@ -10,6 +10,7 @@ import {
   Calendar,
   Card,
   Checkbox,
+  Collapsible,
 } from "@/components";
 import {
   createElement,
@@ -207,5 +208,10 @@ app?.append(
     checkboxLabelValue: "Accept all terms and conditions.",
     checkboxDisable: false,
     onCheck: (e) => console.log(e.currentTarget.checked),
-  })
+  }),
+  Collapsible("@peduarte starred 3 repositories", [
+    "@radix-ui/primitives",
+    "@radix-ui/colors",
+    "@stitches/react",
+  ])
 );

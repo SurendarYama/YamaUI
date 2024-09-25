@@ -21,16 +21,15 @@ export const Alert_Dialog = ({ title, des, close, ok }: AlertDialogType) => {
     "justify-center",
     "fixed",
     "z-50",
-    "bg-black",
     "w-screen",
     "h-screen"
   );
-
+  alertDialogWrapper.style.backgroundColor = "rgb(51 51 51 / 85%)";
   const alertDialogContentWrapper = document.createElement("div");
   alertDialogContentWrapper.classList.add(
     "flex",
     "flex-col",
-    "bg-slate-50",
+    "bg-white",
     "p-10",
     "gap-10",
     "w-96",

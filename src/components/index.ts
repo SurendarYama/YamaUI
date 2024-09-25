@@ -8,3 +8,4 @@ export { Breadcrumb } from "@/components/breadcrumb";
 export { Calendar } from "@/components/calendar";
 export { Card } from "@/components/card";
 export { Checkbox } from "@/components/checkbox";
+export { Collapsible } from "@/components/collapsible";
