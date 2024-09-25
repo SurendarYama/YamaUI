@@ -224,8 +224,22 @@ import { Card } from "@/components";
 const cardChild = document.createElement("div");
 cardChild.innerText = "Card";
 
-document.getElementBy("app)?.append(  Card({
+document.getElementBy("app")?.append(Card({
     child: cardChild,
     customCss: "text-purple-600 font-extrabold text-center",
+  }));
+```
+
+### Checkbox
+
+```
+import { Checkbox } from "@/components";
+
+document.getElementBy("app")?.append(Checkbox({
+    nameAndId: "formCheckbox",
+    defaultValue: true,
+    checkboxLabelValue: "Accept all terms and conditions.",
+    checkboxDisable: false,
+    onCheck: (e) => console.log(e.currentTarget.checked),
   }));
 ```

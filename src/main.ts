@@ -9,6 +9,7 @@ import {
   Breadcrumb,
   Calendar,
   Card,
+  Checkbox,
 } from "@/components";
 import {
   createElement,
@@ -134,7 +135,7 @@ calendarIconBtn.addEventListener("click", () => {
 });
 
 const cardChild = document.createElement("div");
-cardChild.innerText = "Card";
+cardChild.innerText = "@radix-ui/primitives";
 app?.classList.add(
   "flex",
   "items-center",
@@ -198,6 +199,13 @@ app?.append(
   calendarIconBtn,
   Card({
     child: cardChild,
-    customCss: "text-purple-600 font-extrabold text-center",
+    // customCss: "text-sm px-6 py-2 shadow-none", // Collapsible Component
+  }),
+  Checkbox({
+    nameAndId: "formCheckbox",
+    defaultValue: true,
+    checkboxLabelValue: "Accept all terms and conditions.",
+    checkboxDisable: false,
+    onCheck: (e) => console.log(e.currentTarget.checked),
   })
 );
