@@ -44,10 +44,10 @@ export const Collapsible = (heading: string, data: string[]) => {
   collapsiableCTABtn.addEventListener("click", () => {
     if (collapsiableWrapper.dataset.isExpand === "false") {
       collapsiableDisplayItem.classList.remove("hidden");
-      collapsiableDisplayItem.classList.add("flex", "flex-col");
+      collapsiableDisplayItem.classList.add("flex", "flex-col", "gap-2");
       collapsiableWrapper.dataset.isExpand = "true";
     } else {
-      collapsiableDisplayItem.classList.remove("flex", "flex-col");
+      collapsiableDisplayItem.classList.remove("flex", "flex-col", "gap-2");
       collapsiableDisplayItem.classList.add("hidden");
       collapsiableWrapper.dataset.isExpand = "false";
     }
