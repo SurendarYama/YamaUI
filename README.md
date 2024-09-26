@@ -1,7 +1,8 @@
 # YamaUI
 
 ![YamaUI Logo](./src/assets/yamaui-logo.png)
-[Fuji icons created by Mutualism - Flaticon](https://www.flaticon.com/free-icons/fuji)
+
+###### [Fuji icons created by Mutualism - Flaticon](https://www.flaticon.com/free-icons/fuji)
 
 ```
   YamaUI is a typescript component library build on top of tailwindcss.
