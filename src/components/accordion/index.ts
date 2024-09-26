@@ -10,38 +10,47 @@ type AccordionIcons = {
 export const Accordion = ($items: AccordionItem[], $icons: AccordionIcons) => {
   const accordionWrapper = document.createElement("div");
   accordionWrapper.classList.add(
-    "w-3/4",
+    "w-3/5",
     "flex",
     "flex-col",
     "gap-1",
     "items-center"
   );
+  for (const icon of [$icons.expand, $icons.collapse]) {
+    icon.classList.add("size-4", "text-gray-400");
+  }
   $items.map(($item) => {
     const itemWrapper = document.createElement("div");
     itemWrapper.setAttribute("id", $item.id);
     itemWrapper.dataset.isExpand = "false";
     itemWrapper.classList.add(
-      "w-3/4",
-      "bg-gray-200",
-      "p-5",
-      "hover:bg-gray-300"
+      "w-3/5",
+      "bg-white-50",
+      "p-3",
+      "gap-2",
+      "border-b-2",
+      "border-gray-200"
     );
     const itemTitleWrapper = document.createElement("div");
     itemTitleWrapper.classList.add(
       "flex",
       "justify-between",
-      "[&>*:first-child]:hover:underline"
+      "p-1",
+      "text-sm",
+      "font-medium",
+      "[&>*:first-child]:hover:underline",
+      "[&>*:first-child]:hover:decoration-2",
+      "cursor-pointer"
     );
 
     const itemTitle = document.createElement("h6");
-    itemTitle.classList.add("hover:cursor-pointer");
     const itemTitleIcon = document.createElement("span");
     itemWrapper.dataset.isExpand === "true"
       ? itemTitleIcon.append($icons.expand.cloneNode(true))
       : itemTitleIcon.append($icons.collapse.cloneNode(true));
     const itemContent = document.createElement("p");
 
-    itemContent.classList.add("py-4", "px-2");
+    itemContent.classList.add("py-4", "px-2", "text-gray-600");
     itemWrapper.dataset.isExpand === "true"
       ? itemContent.classList.add("flex")
       : itemContent.classList.add("hidden");

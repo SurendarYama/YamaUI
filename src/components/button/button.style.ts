@@ -5,5 +5,5 @@ export const destructiveCss = `${buttonCss} bg-red-600 text-white hover:bg-red-5
 export const outlineCss = `${buttonCss} bg-transparent text-black border-2 border-gray-200 hover:bg-gray-100`;
 export const ghostCss = `${buttonCss} bg-transparent text-black hover:bg-gray-100`;
 export const linkCss = `${buttonCss} bg-transparent text-black hover:underline`;
-export const iconCss = `p-3 bg-gray-100 hover:bg-gray-50 border-2 border-gray-200`;
+export const iconCss = `p-2 bg-gray-100 hover:bg-gray-50 border-2 border-gray-200`;
 export const withIconCss = `p-3 bg-gray-100 hover:bg-gray-50 border-2 border-gray-200`;
