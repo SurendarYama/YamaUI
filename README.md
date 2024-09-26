@@ -1,6 +1,7 @@
 # YamaUI
 
 ![YamaUI Logo](./src/assets/yamaui-logo.png)
+[Fuji icons created by Mutualism - Flaticon](https://www.flaticon.com/free-icons/fuji)
 
 ```
   YamaUI is a typescript component library build on top of tailwindcss.
@@ -278,5 +279,5 @@ const popoverBtn = Button({
 const popoverChild = document.createElement("div");
 popoverChild.innerText = "Popover Child";
 
-document.getElementById('app')?.append(Popover({ parent: popoverBtn, child: popoverChild }))
+document.getElementById('app')?.append(Popover({ parent: popoverBtn, child: popoverChild }));
 ```
