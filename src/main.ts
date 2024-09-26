@@ -23,6 +23,7 @@ import {
   TriangleAlert,
   ChevronRight,
   Calendar as CalendarIcon,
+  ChevronsUpDown,
 } from "lucide";
 const MenuIcon = createElement(Menu);
 
@@ -146,8 +147,22 @@ app?.classList.add(
   "mb-40",
   "z-0"
 );
+
+const popoverBtnWrapper = document.createElement("div");
+const popoverBtnWrapperText = document.createElement("span");
+popoverBtnWrapperText.append("Select Frameworks");
+const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
+popoverBtnWrapperIcon.classList.add("size-4");
+popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
+
+const popoverBtn = Button({
+  variant: "with-icon",
+  value: popoverBtnWrapper,
+  customCss: "text-sm p-[.4rem] bg-white rounded-md",
+});
 const popoverChild = document.createElement("div");
 popoverChild.innerText = "Popover Child";
+
 app?.append(
   primaryBtn,
   secondaryBtn,
@@ -216,5 +231,5 @@ app?.append(
     "@radix-ui/colors",
     "@stitches/react",
   ]),
-  Popover({ popoverBtnText: "Open Popover", child: popoverChild })
+  Popover({ parent: popoverBtn, child: popoverChild })
 );

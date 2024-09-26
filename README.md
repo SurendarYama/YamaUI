@@ -259,9 +259,22 @@ import { Collapsiable } from "@/components";
 
 ```
 import {Popover} from "@/components;
+import { createElement , ChevronsUpDown } from "lucide";
 
+const popoverBtnWrapper = document.createElement("div");
+const popoverBtnWrapperText = document.createElement("span");
+popoverBtnWrapperText.append("Select Frameworks");
+const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
+popoverBtnWrapperIcon.classList.add("size-4");
+popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
+
+const popoverBtn = Button({
+  variant: "with-icon",
+  value: popoverBtnWrapper,
+  customCss: "text-sm p-[.4rem] bg-white rounded-md",
+});
 const popoverChild = document.createElement("div");
 popoverChild.innerText = "Popover Child";
 
-document.getElementById('app')?.append(Popover({popoverBtnText: "Open Popover", child: popoverChild}))
+document.getElementById('app')?.append(Popover({ parent: popoverBtn, child: popoverChild }))
 ```
