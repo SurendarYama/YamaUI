@@ -11,6 +11,7 @@ import {
   Card,
   Checkbox,
   Collapsible,
+  Popover,
 } from "@/components";
 import {
   createElement,
@@ -142,10 +143,11 @@ app?.classList.add(
   "items-center",
   "justify-center",
   "gap-10",
-  "mb-10",
+  "mb-40",
   "z-0"
 );
-
+const popoverChild = document.createElement("div");
+popoverChild.innerText = "Popover Child";
 app?.append(
   primaryBtn,
   secondaryBtn,
@@ -213,5 +215,6 @@ app?.append(
     "@radix-ui/primitives",
     "@radix-ui/colors",
     "@stitches/react",
-  ])
+  ]),
+  Popover({ popoverBtnText: "Open Popover", child: popoverChild })
 );

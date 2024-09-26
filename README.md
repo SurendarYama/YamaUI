@@ -254,3 +254,14 @@ import { Collapsiable } from "@/components";
     "@stitches/react",
   ]));
 ```
+
+### Popover
+
+```
+import {Popover} from "@/components;
+
+const popoverChild = document.createElement("div");
+popoverChild.innerText = "Popover Child";
+
+document.getElementById('app')?.append(Popover({popoverBtnText: "Open Popover", child: popoverChild}))
+```
