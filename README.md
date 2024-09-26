@@ -1,5 +1,7 @@
 # YamaUI
 
+![YamaUI Logo](./src/assets/yamaui-logo.png)
+
 ```
   YamaUI is a typescript component library build on top of tailwindcss.
   Package dependencies: Tailwindcss, Tailwindcss merge, and Lucide.
