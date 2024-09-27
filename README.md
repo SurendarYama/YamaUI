@@ -262,7 +262,7 @@ import { Collapsiable } from "@/components";
 ### Popover
 
 ```
-import {Popover} from "@/components;
+import {Popover} from "@/components";
 import { createElement , ChevronsUpDown } from "lucide";
 
 const popoverBtnWrapper = document.createElement("div");
