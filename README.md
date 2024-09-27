@@ -9,7 +9,7 @@
   Package dependencies: Tailwindcss, Tailwindcss merge, and Lucide.
 ```
 
-#### Button Component
+### Button Component
 
 ```ts
 import { Button } from "@/components";
