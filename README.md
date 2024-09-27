@@ -11,14 +11,14 @@
 
 ### Button Component
 
-```
-    import { Button } from "@/components";
-        Button({
-            variant: "primary",
-            value: "Login",
-            rounded: true,
-            customCss: "bg-purple-600"
-        })
+```ts
+import { Button } from "@/components";
+Button({
+  variant: "primary",
+  value: "Login",
+  rounded: true,
+  customCss: "bg-purple-600",
+});
 ```
 
 #### button option config objects
@@ -34,9 +34,9 @@
 
 #### icon button
 
-```
-import { createElement, Menu} from "lucide";
-const icon = createElement(Menu)
+```ts
+import { createElement, Menu } from "lucide";
+const icon = createElement(Menu);
 
 document.getElementById("app")?.append(
   Button({
@@ -48,8 +48,8 @@ document.getElementById("app")?.append(
 
 #### with icon button
 
-```
-import { createElement, Menu} from "lucide";
+```ts
+import { createElement, Menu } from "lucide";
 const icon = createElement(Menu);
 
 const span = document.createElement("span");
@@ -67,19 +67,19 @@ document.getElementById("app")?.append(
 
 ### Accordion
 
-```
+```ts
 import { Accordion } from "@/components";
 import { createElement, Plus, Minus } from "lucide";
 
 const items = [
   {
-    id:window.crypto.randomUUID(),
+    id: window.crypto.randomUUID(),
     title: "Title 1",
     content:
       " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
   },
   {
-    id:window.crypto.randomUUID(),
+    id: window.crypto.randomUUID(),
     title: "Title 2",
     content:
       " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
@@ -93,12 +93,12 @@ const icons = {
 const faq = Accordion(items, icons);
 
 const app = document.getElementById("app");
-app?.append(faq)
+app?.append(faq);
 ```
 
 ### Alert
 
-```
+```ts
 import { Alert } from "@/components";
 import { createElement, TriangleAlert } from "lucide";
 
@@ -107,21 +107,21 @@ const error = Alert({
   title: "Error",
   des: "Your session has expired. Please log in again",
   customCss: "border-red-500 text-red-500",
-}),
+});
 
 const app = document.getElementById("app");
-app?.append(error)
+app?.append(error);
 ```
 
 ### Alert Dialog
 
-```
+```ts
 import { Button, Alert_Dialog } from "@/components";
 const primaryBtn = Button({
   value: "Save",
 });
 
-primaryBtn.addEventListener("click", function(){
+primaryBtn.addEventListener("click", function () {
   const saveDialog = Alert_Dialog({
     title: "Heading 1",
     des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
@@ -144,39 +144,39 @@ primaryBtn.addEventListener("click", function(){
 
 ### Avatar
 
-```
+```ts
 import { Avatar } from "@/components";
-const avatarEl =   Avatar({
-    src: "https://avatars.githubusercontent.com/u/125799445?v=4",
-    fallbackText: "SY",
-    customCss: {
-      container: "size-14",
-      avatar: "size-14",
-    },
-  })
+const avatarEl = Avatar({
+  src: "https://avatars.githubusercontent.com/u/125799445?v=4",
+  fallbackText: "SY",
+  customCss: {
+    container: "size-14",
+    avatar: "size-14",
+  },
+});
 
-  document.getElementById('app').append(avatarEl)
+document.getElementById("app").append(avatarEl);
 ```
 
 ### Badge
 
-```
+```ts
 import { Badge } from "@/components";
- document.getElementById('app').append(
+document.getElementById("app").append(
   Badge({
     value: "Badge",
     customCss: "bg-red-600 hover:bg-red-500 rounded-full",
   })
- )
+);
 ```
 
 ### Breadcrumb
 
-```
+```ts
 import { Breadcrumb } from "@/components";
 import { ChevronRight } from "lucide";
 
-document.getElementById('app').append(
+document.getElementById("app").append(
   Breadcrumb(
     [
       { title: "Home", href: "/home" },
@@ -187,12 +187,12 @@ document.getElementById('app').append(
     ],
     createElement(ChevronRight)
   )
-)
+);
 ```
 
 ### Calendar
 
-```
+```ts
 import { Button, Calendar } from "@/components";
 import { createElement, Calendar as CalendarIcon } from "lucide";
 const calendarIconBtn = Button({
@@ -200,7 +200,6 @@ const calendarIconBtn = Button({
   value: createElement(CalendarIcon),
   customCss: "relative z-10",
 });
-
 
 calendarIconBtn.addEventListener("click", () => {
   const calendarElRef = document.getElementById("calendar");
@@ -217,53 +216,61 @@ calendarIconBtn.addEventListener("click", () => {
   }
 });
 
-document.getElementById('app').append(calendarIconBtn);
+document.getElementById("app").append(calendarIconBtn);
 ```
 
 ### Card
 
-```
+```ts
 import { Card } from "@/components";
 
 const cardChild = document.createElement("div");
 cardChild.innerText = "Card";
 
-document.getElementBy("app")?.append(Card({
+document.getElementBy("app")?.append(
+  Card({
     child: cardChild,
     customCss: "text-purple-600 font-extrabold text-center",
-  }));
+  })
+);
 ```
 
 ### Checkbox
 
-```
+```ts
 import { Checkbox } from "@/components";
 
-document.getElementBy("app")?.append(Checkbox({
+document.getElementBy("app")?.append(
+  Checkbox({
     nameAndId: "formCheckbox",
     defaultValue: true,
     checkboxLabelValue: "Accept all terms and conditions.",
     checkboxDisable: false,
     onCheck: (e) => console.log(e.currentTarget.checked),
-  }));
+  })
+);
 ```
 
 ### Collapsiable
 
-```
+```ts
 import { Collapsiable } from "@/components";
- document.getElementById("app")?.append(Collapsible("@peduarte starred 3 repositories", [
-    "@radix-ui/primitives",
-    "@radix-ui/colors",
-    "@stitches/react",
-  ]));
+document
+  .getElementById("app")
+  ?.append(
+    Collapsible("@peduarte starred 3 repositories", [
+      "@radix-ui/primitives",
+      "@radix-ui/colors",
+      "@stitches/react",
+    ])
+  );
 ```
 
 ### Popover
 
-```
-import {Popover} from "@/components;
-import { createElement , ChevronsUpDown } from "lucide";
+```ts
+import { Popover } from "@/components";
+import { createElement, ChevronsUpDown } from "lucide";
 
 const popoverBtnWrapper = document.createElement("div");
 const popoverBtnWrapperText = document.createElement("span");
@@ -280,5 +287,7 @@ const popoverBtn = Button({
 const popoverChild = document.createElement("div");
 popoverChild.innerText = "Popover Child";
 
-document.getElementById('app')?.append(Popover({ parent: popoverBtn, child: popoverChild }));
+document
+  .getElementById("app")
+  ?.append(Popover({ parent: popoverBtn, child: popoverChild }));
 ```
