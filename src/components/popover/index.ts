@@ -10,7 +10,7 @@ export const Popover = ({ parent, child }: PopoverType) => {
   const childWrapper = document.createElement("div");
   childWrapper.classList.add(
     "absolute",
-    "w-64",
+    "min-w-64",
     "p-1",
     "border-2",
     "max-h-64",
