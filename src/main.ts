@@ -139,14 +139,6 @@ calendarIconBtn.addEventListener("click", () => {
 
 const cardChild = document.createElement("div");
 cardChild.innerText = "@radix-ui/primitives";
-app?.classList.add(
-  "flex",
-  "items-center",
-  "justify-center",
-  "gap-10",
-  "mb-40",
-  "z-0"
-);
 
 const popoverBtnWrapper = document.createElement("div");
 const popoverBtnWrapperText = document.createElement("span");
@@ -158,11 +150,26 @@ popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
 const popoverBtn = Button({
   variant: "with-icon",
   value: popoverBtnWrapper,
-  customCss: "text-sm p-[.4rem] bg-white rounded-md",
+  customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-300",
 });
-const popoverChild = document.createElement("div");
-popoverChild.innerText = "Popover Child";
+const popoverChild = document.createElement("ul");
+const listItem = Array(20);
+listItem.fill("Item");
+for (const [index, item] of listItem.entries()) {
+  const itemWrapper = document.createElement("ul");
+  itemWrapper.classList.add("p-2");
+  itemWrapper.append(`${item}-${index + 1}`);
+  popoverChild.append(itemWrapper);
+}
 
+app?.classList.add(
+  "flex",
+  "items-center",
+  "justify-center",
+  "gap-10",
+  "mb-40",
+  "z-0"
+);
 app?.append(
   primaryBtn,
   secondaryBtn,
