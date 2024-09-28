@@ -12,6 +12,7 @@ import {
   Checkbox,
   Collapsible,
   Popover,
+  Combobox,
 } from "@/components";
 import {
   createElement,
@@ -150,10 +151,10 @@ popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
 const popoverBtn = Button({
   variant: "with-icon",
   value: popoverBtnWrapper,
-  customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-300",
+  customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-100",
 });
 const popoverChild = document.createElement("ul");
-const listItem = Array(2);
+const listItem = Array(20);
 listItem.fill("Item");
 for (const [index, item] of listItem.entries()) {
   const itemWrapper = document.createElement("li");
@@ -162,6 +163,36 @@ for (const [index, item] of listItem.entries()) {
   popoverChild.append(itemWrapper);
 }
 
+const popover = Popover({
+  parent: popoverBtn,
+  child: Combobox({
+    items: [
+      {
+        label: "React",
+        value: "React",
+      },
+      {
+        label: "Svelte",
+        value: "Svelte",
+      },
+      {
+        label: "Angular",
+        value: "Angular",
+      },
+      {
+        label: "Vue",
+        value: "Vue",
+      },
+    ],
+    onChange: console.log,
+  }),
+  onParentClick: () => {
+    const comboboxSearchInput = document.getElementsByName(
+      "combobox-search-input"
+    );
+    comboboxSearchInput[0].focus();
+  },
+});
 app?.classList.add(
   "flex",
   "items-center",
@@ -238,5 +269,5 @@ app?.append(
     "@radix-ui/colors",
     "@stitches/react",
   ]),
-  Popover({ parent: popoverBtn, child: popoverChild })
+  popover
 );
