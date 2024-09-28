@@ -25,14 +25,10 @@ export const Popover = ({ parent, child }: PopoverType) => {
     if (popoverWrapper.dataset.isOpen === "false") {
       parent.append(childWrapper);
       const childHeight = childWrapper.getBoundingClientRect().height;
-      if (
-        parent.getBoundingClientRect().bottom + childHeight >
-        window.innerHeight
-      ) {
-        childWrapper.style.marginTop = `-${childHeight + 35}px`;
-      } else {
-        childWrapper.style.top = "2.5rem";
-      }
+      parent.getBoundingClientRect().bottom + childHeight > window.innerHeight
+        ? (childWrapper.style.marginTop = `-${childHeight + 35}px`)
+        : (childWrapper.style.top = "2.5rem");
+
       popoverWrapper.dataset.isOpen = "true";
     } else {
       childWrapper.remove();
