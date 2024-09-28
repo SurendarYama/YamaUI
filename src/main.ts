@@ -153,7 +153,7 @@ const popoverBtn = Button({
   customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-300",
 });
 const popoverChild = document.createElement("ul");
-const listItem = Array(20);
+const listItem = Array(2);
 listItem.fill("Item");
 for (const [index, item] of listItem.entries()) {
   const itemWrapper = document.createElement("li");

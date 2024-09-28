@@ -27,7 +27,7 @@ export const Popover = ({ parent, child }: PopoverType) => {
       const childHeight = childWrapper.getBoundingClientRect().height;
       parent.getBoundingClientRect().bottom + childHeight > window.innerHeight
         ? (childWrapper.style.marginTop = `-${childHeight + 35}px`)
-        : (childWrapper.style.top = "2.5rem");
+        : (childWrapper.style.marginTop = ".75rem");
 
       popoverWrapper.dataset.isOpen = "true";
     } else {
