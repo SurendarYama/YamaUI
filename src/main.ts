@@ -156,7 +156,7 @@ const popoverChild = document.createElement("ul");
 const listItem = Array(20);
 listItem.fill("Item");
 for (const [index, item] of listItem.entries()) {
-  const itemWrapper = document.createElement("ul");
+  const itemWrapper = document.createElement("li");
   itemWrapper.classList.add("p-2");
   itemWrapper.append(`${item}-${index + 1}`);
   popoverChild.append(itemWrapper);

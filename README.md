@@ -284,7 +284,7 @@ const popoverBtn = Button({
   value: popoverBtnWrapper,
   customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-300",
 });
-const popoverChild = document.createElement("ul");
+const popoverChild = document.createElement("li");
 const listItem = Array(20);
 listItem.fill("Item");
 for (const [index, item] of listItem.entries()) {
