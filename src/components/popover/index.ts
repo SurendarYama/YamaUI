@@ -11,7 +11,7 @@ export const Popover = ({ parent, child }: PopoverType) => {
   childWrapper.classList.add(
     "absolute",
     "w-64",
-    "p-4",
+    "p-1",
     "border-2",
     "max-h-64",
     "overflow-auto",
