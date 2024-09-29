@@ -1,4 +1,4 @@
-import { createElement, Search } from "lucide";
+import { createElement, Search, Check } from "lucide";
 
 type Item = {
   label: string;
@@ -15,6 +15,8 @@ export const Combobox = ({ items, onChange }: ComboboxType) => {
   comboboxWrapper.classList.add("flex", "flex-col");
   const searchSectionWrapper = document.createElement("div");
   searchSectionWrapper.classList.add("flex", "p-3", "items-center", "gap-3");
+  let selectedItem: null | string = null;
+
   const searchIcon = createElement(Search);
   searchIcon.classList.add("size-[.85rem]", "text-gray-500");
   const searchInput = document.createElement("input");
@@ -45,8 +47,18 @@ export const Combobox = ({ items, onChange }: ComboboxType) => {
     for (const item of items) {
       const frameworkItem = document.createElement("li");
       frameworkItem.addEventListener("click", handleClick);
-      frameworkItem.classList.add("p-2", "hover:bg-gray-100");
-      frameworkItem.append(item.label);
+      frameworkItem.classList.add(
+        "flex",
+        "justify-between",
+        "items-center",
+        "p-2",
+        "hover:bg-gray-100"
+      );
+      const checkIcon = createElement(Check);
+      checkIcon.classList.add("size-4", "text-gray-700");
+      item.value === selectedItem
+        ? frameworkItem.append(item.value, checkIcon)
+        : frameworkItem.append(item.value);
       parent.append(frameworkItem);
     }
   };
@@ -54,6 +66,7 @@ export const Combobox = ({ items, onChange }: ComboboxType) => {
     onChange(e);
     searchInput.value = "";
     frameworksListItemsWrapper.innerHTML = "";
+    selectedItem = (e.target as HTMLSpanElement).textContent;
     buildItems(frameworksListItemsWrapper, items);
   };
   buildItems(frameworksListItemsWrapper, items);
