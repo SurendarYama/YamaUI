@@ -35,39 +35,36 @@ export const Combobox = ({ items, onChange }: ComboboxType) => {
   const frameworksListItemsWrapper = document.createElement("ul");
   frameworksListItemsWrapper.setAttribute("id", "frameworksListItemsWrapper");
   frameworksListItemsWrapper.classList.add("text-sm");
-  for (const item of items) {
-    const frameworkItem = document.createElement("li");
-    frameworkItem.addEventListener("click", onChange);
-    frameworkItem.classList.add("p-2", "hover:bg-gray-100");
-    frameworkItem.append(item.label);
-    frameworksListItemsWrapper.append(frameworkItem);
-  }
+
+  const buildItems = (parent: HTMLUListElement, items: Item[]) => {
+    for (const item of items) {
+      const frameworkItem = document.createElement("li");
+      frameworkItem.addEventListener("click", handleClick);
+      frameworkItem.classList.add("p-2", "hover:bg-gray-100");
+      frameworkItem.append(item.label);
+      parent.append(frameworkItem);
+    }
+  };
+  const handleClick = (e: Event) => {
+    onChange(e);
+    searchInput.value = "";
+    frameworksListItemsWrapper.innerHTML = "";
+    buildItems(frameworksListItemsWrapper, items);
+  };
+  buildItems(frameworksListItemsWrapper, items);
 
   searchInput.addEventListener("click", (e) => e.stopPropagation());
   searchInput.addEventListener("input", (e) => {
     const inputValue = (e.target as HTMLInputElement).value;
     if (!inputValue) {
       frameworksListItemsWrapper.innerHTML = "";
-      for (const item of items) {
-        const frameworkItem = document.createElement("li");
-        frameworkItem.addEventListener("click", onChange);
-        frameworkItem.classList.add("p-2", "hover:bg-gray-100");
-        frameworkItem.append(item.label);
-        frameworksListItemsWrapper.append(frameworkItem);
-      }
+      buildItems(frameworksListItemsWrapper, items);
     } else {
       const newItems = items.filter((item) =>
-        item.value.toLowerCase().includes(inputValue)
+        item.value.toLowerCase().includes(inputValue.toLowerCase())
       );
       frameworksListItemsWrapper.innerHTML = "";
-      for (const item of newItems) {
-        const frameworkItem = document.createElement("li");
-        frameworkItem.addEventListener("click", onChange);
-        frameworkItem.classList.add("p-2", "hover:bg-gray-100");
-        frameworkItem.append(item.label);
-        frameworksListItemsWrapper.append(frameworkItem);
-      }
-
+      buildItems(frameworksListItemsWrapper, newItems);
       const childWrapper = document.getElementsByClassName(
         "popover-childwrapper"
       )[0] as HTMLElement;
