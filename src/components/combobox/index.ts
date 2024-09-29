@@ -14,11 +14,16 @@ export const Combobox = ({ items, onChange }: ComboboxType) => {
   const comboboxWrapper = document.createElement("div");
   comboboxWrapper.classList.add("flex", "flex-col");
   const searchSectionWrapper = document.createElement("div");
-  searchSectionWrapper.classList.add("flex", "p-3", "items-center");
+  searchSectionWrapper.classList.add("flex", "p-3", "items-center", "gap-3");
   const searchIcon = createElement(Search);
   searchIcon.classList.add("size-[.85rem]", "text-gray-500");
   const searchInput = document.createElement("input");
-  searchInput.classList.add("h-4", "border-none", "focus:ring-[0rem]");
+  searchInput.classList.add(
+    "h-4",
+    "border-none",
+    "focus:ring-[0rem]",
+    "outline-none"
+  );
   const searchInputAttrs: { attrName: string; value: string }[] = [
     { attrName: "type", value: "text" },
     { attrName: "placeholder", value: "Search frameworks..." },
