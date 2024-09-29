@@ -19,6 +19,7 @@ export const Checkbox = ({
   checkboxInput.classList.add(
     "size-4",
     "accent-black",
+    "ouline-none",
     checkboxDisable ? "cursor-not-allowed" : "pointer"
   );
   checkboxInput.setAttribute("name", nameAndId);
