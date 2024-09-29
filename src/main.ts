@@ -143,6 +143,7 @@ cardChild.innerText = "@radix-ui/primitives";
 
 const popoverBtnWrapper = document.createElement("div");
 const popoverBtnWrapperText = document.createElement("span");
+popoverBtnWrapperText.classList.add("min-w-32", "text-left");
 popoverBtnWrapperText.append("Select Frameworks");
 const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
 popoverBtnWrapperIcon.classList.add("size-4");
@@ -163,7 +164,7 @@ for (const [index, item] of listItem.entries()) {
   popoverChild.append(itemWrapper);
 }
 
-const popover = Popover({
+const combobox = Popover({
   parent: popoverBtn,
   child: Combobox({
     items: [
@@ -184,13 +185,22 @@ const popover = Popover({
         value: "Vue",
       },
     ],
-    onChange: console.log,
+    onChange: (e: Event) => {
+      if (
+        popoverBtn.firstElementChild &&
+        popoverBtn.firstElementChild.firstElementChild
+      ) {
+        popoverBtn.firstElementChild.firstElementChild.textContent = (
+          e.target as HTMLSpanElement
+        ).textContent;
+      }
+    },
   }),
   onParentClick: () => {
     const comboboxSearchInput = document.getElementsByName(
       "combobox-search-input"
     );
-    comboboxSearchInput[0].focus();
+    comboboxSearchInput[0]?.focus();
   },
 });
 app?.classList.add(
@@ -269,5 +279,5 @@ app?.append(
     "@radix-ui/colors",
     "@stitches/react",
   ]),
-  popover
+  combobox
 );

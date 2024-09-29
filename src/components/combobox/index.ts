@@ -7,31 +7,83 @@ type Item = {
 
 type ComboboxType = {
   items: Item[];
-  onChange: (selectedItem: string) => void;
+  onChange: (e: Event) => void;
 };
 
 export const Combobox = ({ items, onChange }: ComboboxType) => {
   const comboboxWrapper = document.createElement("div");
   comboboxWrapper.classList.add("flex", "flex-col");
   const searchSectionWrapper = document.createElement("div");
-  searchSectionWrapper.classList.add("flex", "p-2", "items-center", "gap-2");
+  searchSectionWrapper.classList.add("flex", "p-3", "items-center");
   const searchIcon = createElement(Search);
   searchIcon.classList.add("size-[.85rem]", "text-gray-500");
-  searchSectionWrapper.append(searchIcon);
   const searchInput = document.createElement("input");
   searchInput.classList.add("h-4", "border-none", "focus:ring-[0rem]");
   const searchInputAttrs: { attrName: string; value: string }[] = [
     { attrName: "type", value: "text" },
     { attrName: "placeholder", value: "Search frameworks..." },
     { attrName: "name", value: "combobox-search-input" },
+    { attrName: "autocomplete", value: "off" },
   ];
   for (const { attrName, value } of searchInputAttrs) {
     searchInput.setAttribute(attrName, value);
   }
+
+  const borderBottomSpan = document.createElement("span");
+  borderBottomSpan.classList.add("border-b-2");
+
+  const frameworksListItemsWrapper = document.createElement("ul");
+  frameworksListItemsWrapper.setAttribute("id", "frameworksListItemsWrapper");
+  frameworksListItemsWrapper.classList.add("text-sm");
+  for (const item of items) {
+    const frameworkItem = document.createElement("li");
+    frameworkItem.addEventListener("click", onChange);
+    frameworkItem.classList.add("p-2", "hover:bg-gray-100");
+    frameworkItem.append(item.label);
+    frameworksListItemsWrapper.append(frameworkItem);
+  }
+
   searchInput.addEventListener("click", (e) => e.stopPropagation());
+  searchInput.addEventListener("input", (e) => {
+    const inputValue = (e.target as HTMLInputElement).value;
+    if (!inputValue) {
+      frameworksListItemsWrapper.innerHTML = "";
+      for (const item of items) {
+        const frameworkItem = document.createElement("li");
+        frameworkItem.addEventListener("click", onChange);
+        frameworkItem.classList.add("p-2", "hover:bg-gray-100");
+        frameworkItem.append(item.label);
+        frameworksListItemsWrapper.append(frameworkItem);
+      }
+    } else {
+      const newItems = items.filter((item) =>
+        item.value.toLowerCase().includes(inputValue)
+      );
+      frameworksListItemsWrapper.innerHTML = "";
+      for (const item of newItems) {
+        const frameworkItem = document.createElement("li");
+        frameworkItem.addEventListener("click", onChange);
+        frameworkItem.classList.add("p-2", "hover:bg-gray-100");
+        frameworkItem.append(item.label);
+        frameworksListItemsWrapper.append(frameworkItem);
+      }
+
+      const childWrapper = document.getElementsByClassName(
+        "popover-childwrapper"
+      )[0] as HTMLElement;
+      const parent = document.getElementsByClassName("popover-parent")[0];
+      const childHeight = childWrapper.getBoundingClientRect().height;
+      parent.getBoundingClientRect().bottom + childHeight > window.innerHeight
+        ? (childWrapper.style.marginTop = `-${childHeight + 35}px`)
+        : (childWrapper.style.marginTop = ".75rem");
+    }
+  });
 
   searchSectionWrapper.append(searchIcon, searchInput);
-
-  comboboxWrapper.append(searchSectionWrapper);
+  comboboxWrapper.append(
+    searchSectionWrapper,
+    borderBottomSpan,
+    frameworksListItemsWrapper
+  );
   return comboboxWrapper;
 };

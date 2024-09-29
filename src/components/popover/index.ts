@@ -7,12 +7,13 @@ type PopoverType = {
 export const Popover = ({ parent, child, onParentClick }: PopoverType) => {
   const popoverWrapper = document.createElement("div");
   popoverWrapper.dataset.isOpen = "false";
-  parent.classList.add("relative");
+  parent.classList.add("popover-parent", "relative");
   const childWrapper = document.createElement("div");
+
   childWrapper.classList.add(
+    "popover-childwrapper",
     "absolute",
     "min-w-64",
-    "p-1",
     "border-2",
     "max-h-64",
     "overflow-auto",

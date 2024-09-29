@@ -298,3 +298,66 @@ document
   .getElementById("app")
   ?.append(Popover({ parent: popoverBtn, child: popoverChild }));
 ```
+
+### Combobox
+
+```ts
+import { Button, Popover , Combobox } from "@/components";
+import { createElement, ChevronsUpDown} from "lucide";
+
+onst popoverBtnWrapper = document.createElement("div");
+const popoverBtnWrapperText = document.createElement("span");
+popoverBtnWrapperText.classList.add("min-w-32", "text-left");
+popoverBtnWrapperText.append("Select Frameworks");
+const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
+popoverBtnWrapperIcon.classList.add("size-4");
+popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
+
+const popoverBtn = Button({
+  variant: "with-icon",
+  value: popoverBtnWrapper,
+  customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-100",
+});
+
+const combobox = Popover({
+  parent: popoverBtn,
+  child: Combobox({
+    items: [
+      {
+        label: "React",
+        value: "React",
+      },
+      {
+        label: "Svelte",
+        value: "Svelte",
+      },
+      {
+        label: "Angular",
+        value: "Angular",
+      },
+      {
+        label: "Vue",
+        value: "Vue",
+      },
+    ],
+    onChange: (e: Event) => {
+      if (
+        popoverBtn.firstElementChild &&
+        popoverBtn.firstElementChild.firstElementChild
+      ) {
+        popoverBtn.firstElementChild.firstElementChild.textContent = (
+          e.target as HTMLSpanElement
+        ).textContent;
+      }
+    },
+  }),
+  onParentClick: () => {
+    const comboboxSearchInput = document.getElementsByName(
+      "combobox-search-input"
+    );
+    comboboxSearchInput[0]?.focus();
+  },
+});
+
+document.getElementById('app')?.append(combobox);
+```
