@@ -305,7 +305,7 @@ document
 import { Button, Popover , Combobox } from "@/components";
 import { createElement, ChevronsUpDown} from "lucide";
 
-onst popoverBtnWrapper = document.createElement("div");
+const popoverBtnWrapper = document.createElement("div");
 const popoverBtnWrapperText = document.createElement("span");
 popoverBtnWrapperText.classList.add("min-w-32", "text-left");
 popoverBtnWrapperText.append("Select Frameworks");
