@@ -174,7 +174,7 @@ document.getElementById("app").append(
 
 ```ts
 import { Breadcrumb } from "@/components";
-import { ChevronRight } from "lucide";
+import { createElement, ChevronRight } from "lucide";
 
 document.getElementById("app").append(
   Breadcrumb(
@@ -302,8 +302,8 @@ document
 ### Combobox
 
 ```ts
-import { Button, Popover , Combobox } from "@/components";
-import { createElement, ChevronsUpDown} from "lucide";
+import { Button, Popover, Combobox } from "@/components";
+import { createElement, ChevronsUpDown } from "lucide";
 
 const popoverBtnWrapper = document.createElement("div");
 const popoverBtnWrapperText = document.createElement("span");
@@ -359,5 +359,5 @@ const combobox = Popover({
   },
 });
 
-document.getElementById('app')?.append(combobox);
+document.getElementById("app")?.append(combobox);
 ```
