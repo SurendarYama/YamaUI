@@ -163,7 +163,6 @@ import { $button } from "@/components";
 $button({
   variant: "primary",
   value: "Login",
-  rounded: true,
   customStyles: "bg-purple-600",
 });
 ```
