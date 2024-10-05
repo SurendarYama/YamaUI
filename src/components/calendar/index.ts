@@ -1,7 +1,7 @@
 import { createElement, ChevronLeft, ChevronRight } from "lucide";
-import { Button } from "@/components/button";
+import { $button } from "@/components/button";
 
-export const Calendar = (onClick: (value: any) => void) => {
+export const $calendar = (onClick: (value: any) => void) => {
   const calendarWrapper = document.createElement("div");
   calendarWrapper.addEventListener("click", (e: Event) => e.stopPropagation());
   calendarWrapper.classList.add(
@@ -17,15 +17,15 @@ export const Calendar = (onClick: (value: any) => void) => {
   );
   const calendarHeader = document.createElement("div");
   calendarHeader.classList.add("flex", "items-center", "justify-between");
-  const leftIconButton = Button({
+  const leftIconButton = $button({
     variant: "icon",
     value: createElement(ChevronLeft),
-    customCss: "p-0 text-gray-500",
+    customStyles: "p-0 text-gray-500",
   });
-  const rightIconButton = Button({
+  const rightIconButton = $button({
     variant: "icon",
     value: createElement(ChevronRight),
-    customCss: "p-0 text-gray-500",
+    customStyles: "p-0 text-gray-500",
   });
 
   const currentMonthWrapper = document.createElement("span");

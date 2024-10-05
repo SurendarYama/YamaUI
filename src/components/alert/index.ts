@@ -2,10 +2,10 @@ type AlertType = {
   icon: SVGElement;
   title: string;
   des: string;
-  customCss: string;
+  customStyles: string;
 };
 
-export const Alert = ({ icon, title, des, customCss }: AlertType) => {
+export const $alert = ({ icon, title, des, customStyles }: AlertType) => {
   const alertWrapper = document.createElement("div");
   alertWrapper.classList.add(
     "w-1/4",
@@ -15,7 +15,7 @@ export const Alert = ({ icon, title, des, customCss }: AlertType) => {
     "p-4",
     "flex",
     "items-center",
-    ...customCss.split(" ")
+    ...customStyles.split(" ")
   );
 
   const alertContentWrapper = document.createElement("div");

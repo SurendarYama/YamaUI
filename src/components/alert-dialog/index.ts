@@ -1,4 +1,4 @@
-import { Button } from "@/components";
+import { $button } from "@/components";
 
 type AlertDialogType = {
   title: string;
@@ -13,7 +13,7 @@ type AlertDialogType = {
   };
 };
 
-export const Alert_Dialog = ({ title, des, close, ok }: AlertDialogType) => {
+export const $alert_dialog = ({ title, des, close, ok }: AlertDialogType) => {
   const alertDialogWrapper = document.createElement("div");
   alertDialogWrapper.classList.add(
     "flex",
@@ -45,7 +45,7 @@ export const Alert_Dialog = ({ title, des, close, ok }: AlertDialogType) => {
 
   const btns = document.createElement("div");
   btns.classList.add("flex", "gap-1");
-  const okBtn = Button({
+  const okBtn = $button({
     value: ok.context,
   });
   okBtn.addEventListener("click", () => {
@@ -53,7 +53,7 @@ export const Alert_Dialog = ({ title, des, close, ok }: AlertDialogType) => {
     document.body.classList.remove("overflow-hidden");
     alertDialogWrapper.remove();
   });
-  const cancleBtn = Button({
+  const cancleBtn = $button({
     variant: "destructive",
     value: close.context,
   });

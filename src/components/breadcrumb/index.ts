@@ -1,42 +1,42 @@
 import { createElement, Ellipsis } from "lucide";
-import { Button } from "@/components/button";
+import { $button } from "@/components/button";
 
 type BreadcrumbItem = {
   title: string;
   href: string;
 };
 
-export const Breadcrumb = (
-  $breadcrumbItems: BreadcrumbItem[],
-  $breadcrumbIcon: SVGElement
+export const $breadcrumb = (
+  breadcrumbItems: BreadcrumbItem[],
+  breadcrumbIcon: SVGElement
 ) => {
   const breadcrumbWrapper = document.createElement("div");
   breadcrumbWrapper.classList.add("flex", "items-center");
   const ellipsisIcon = createElement(Ellipsis);
-  $breadcrumbIcon.classList.add("size-4");
+  breadcrumbIcon.classList.add("size-4");
 
-  if ($breadcrumbItems.length >= 4) {
+  if (breadcrumbItems.length >= 4) {
     const displayItems = [
-      ...[...$breadcrumbItems].splice(0, 1),
+      ...[...breadcrumbItems].splice(0, 1),
       { title: ellipsisIcon, href: "dropdown" },
-      ...[...$breadcrumbItems].splice(-2, 2),
+      ...[...breadcrumbItems].splice(-2, 2),
     ];
-    const dropdownItems = [...$breadcrumbItems];
+    const dropdownItems = [...breadcrumbItems];
     const remainingDropdownItems = [
       ...[...dropdownItems].splice(1, dropdownItems.length - 3),
     ];
 
-    for (const [$dpItemIndex, $dpItem] of displayItems.entries()) {
+    for (const [dpItemIndex, dpItem] of displayItems.entries()) {
       const breadcrumbDisplayItemWrapper = document.createElement("div");
       breadcrumbDisplayItemWrapper.classList.add("flex", "items-center");
-      const breadcrumbDisplayItemLink = Button({
+      const breadcrumbDisplayItemLink = $button({
         variant: "link",
-        value: $dpItem.title,
-        customCss: "p-2 text-sm",
+        value: dpItem.title,
+        customStyles: "p-2 text-sm",
       });
 
       breadcrumbDisplayItemLink.addEventListener("click", (event) => {
-        if ($dpItem.href === "dropdown") {
+        if (dpItem.href === "dropdown") {
           event.stopPropagation();
           const breadcrumbDropdownRef =
             document.getElementById("breadcrumbDropdown");
@@ -74,42 +74,42 @@ export const Breadcrumb = (
           }
         } else {
           // redirect here....
-          alert($dpItem.href);
+          alert(dpItem.href);
         }
       });
       document.addEventListener("click", () => {
         document.getElementById("breadcrumbDropdown")?.remove();
       });
-      if (displayItems.length === $dpItemIndex + 1) {
+      if (displayItems.length === dpItemIndex + 1) {
         breadcrumbDisplayItemWrapper.append(breadcrumbDisplayItemLink);
       } else {
         breadcrumbDisplayItemWrapper.append(
           breadcrumbDisplayItemLink,
-          $breadcrumbIcon.cloneNode(true)
+          breadcrumbIcon.cloneNode(true)
         );
       }
       breadcrumbWrapper.append(breadcrumbDisplayItemWrapper);
     }
   } else {
-    for (const [$index, $breadcrumbItem] of $breadcrumbItems.entries()) {
+    for (const [index, breadcrumbItem] of breadcrumbItems.entries()) {
       const breadcrumbItemWrapper = document.createElement("div");
       breadcrumbItemWrapper.classList.add("flex");
-      const breadcrumbItemLink = Button({
+      const breadcrumbItemLink = $button({
         variant: "link",
-        value: $breadcrumbItem.title,
-        customCss: "p-2 text-sm",
+        value: breadcrumbItem.title,
+        customStyles: "p-2 text-sm",
       });
 
-      if ($breadcrumbItems.length === $index + 1) {
+      if (breadcrumbItems.length === index + 1) {
         breadcrumbWrapper.append(breadcrumbItemLink);
       } else {
         breadcrumbWrapper.append(
           breadcrumbItemLink,
-          $breadcrumbIcon.cloneNode(true)
+          breadcrumbIcon.cloneNode(true)
         );
       }
       breadcrumbItemLink.addEventListener("click", () => {
-        alert($breadcrumbItem.href);
+        alert(breadcrumbItem.href);
       });
     }
   }

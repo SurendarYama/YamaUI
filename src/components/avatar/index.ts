@@ -2,34 +2,34 @@ import { twMerge } from "tailwind-merge";
 type AvatarType = {
   src: string;
   fallbackText: string;
-  customCss?: {
+  customStyles?: {
     container: string;
     avatar: string;
   };
 };
 
-export const Avatar = ({ src, fallbackText, customCss }: AvatarType) => {
+export const $avatar = ({ src, fallbackText, customStyles }: AvatarType) => {
   const avatarWrapper = document.createElement("div");
-  const defaultCss =
+  const defaultStyles =
     "size-12 rounded-full bg-slate-200 flex items-center justify-center";
 
-  const defaultCssAvatar = "size-12 rounded-full";
+  const defaultStylesAvatar = "size-12 rounded-full";
 
-  customCss
+  customStyles
     ? avatarWrapper.classList.add(
-        ...twMerge(defaultCss, customCss.container).split(" ")
+        ...twMerge(defaultStyles, customStyles.container).split(" ")
       )
-    : avatarWrapper.classList.add(...defaultCss.split(" "));
+    : avatarWrapper.classList.add(...defaultStyles.split(" "));
   const ft = document.createElement("h3");
   ft.classList.add("font-bold", "text-purple-500", "text-xl");
   ft.append(fallbackText);
   avatarWrapper.append(ft);
   const img = document.createElement("img");
-  customCss
+  customStyles
     ? img.classList.add(
-        ...twMerge(defaultCssAvatar, customCss.avatar).split(" ")
+        ...twMerge(defaultStylesAvatar, customStyles.avatar).split(" ")
       )
-    : img.classList.add(...defaultCssAvatar.split(" "));
+    : img.classList.add(...defaultStylesAvatar.split(" "));
   img.setAttribute("src", src);
   img.addEventListener("load", function () {
     ft.remove();

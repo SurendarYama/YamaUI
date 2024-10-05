@@ -1,7 +1,7 @@
 import { ChevronsUpDown, createElement } from "lucide";
-import { Button, Card } from "@/components";
+import { $button, $card } from "@/components";
 
-export const Collapsible = (heading: string, data: string[]) => {
+export const $collapsible = (heading: string, data: string[]) => {
   const collapsiableWrapper = document.createElement("div");
   collapsiableWrapper.classList.add("flex", "flex-col", "w-96", "gap-2");
   collapsiableWrapper.dataset.isExpand = "false";
@@ -14,16 +14,16 @@ export const Collapsible = (heading: string, data: string[]) => {
 
   const collapsiableCTABtnIcon = createElement(ChevronsUpDown);
   collapsiableCTABtnIcon.classList.add("size-4");
-  const collapsiableCTABtn = Button({
+  const collapsiableCTABtn = $button({
     variant: "icon",
     value: collapsiableCTABtnIcon,
-    customCss: "p-1 bg-transparent border-none hover:bg-slate-100",
+    customStyles: "p-1 bg-transparent border-none hover:bg-slate-100",
   });
   const cardChild = document.createElement("div");
   cardChild.innerText = data[0];
-  const firstEl = Card({
+  const firstEl = $card({
     child: cardChild,
-    customCss: "text-sm px-6 py-2 shadow-none", // Collapsible Component
+    customStyles: "text-sm px-6 py-2 shadow-none", // Collapsible Component
   });
 
   const collapsiableDisplayItem = document.createElement("div");
@@ -34,9 +34,9 @@ export const Collapsible = (heading: string, data: string[]) => {
   for (const di of displayData) {
     const cardChild = document.createElement("div");
     cardChild.innerText = di;
-    const diEl = Card({
+    const diEl = $card({
       child: cardChild,
-      customCss: "text-sm px-6 py-2 shadow-none",
+      customStyles: "text-sm px-6 py-2 shadow-none",
     });
     collapsiableDisplayItem.append(diEl);
   }

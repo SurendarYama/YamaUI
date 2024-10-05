@@ -2,15 +2,17 @@ import { twMerge } from "tailwind-merge";
 
 type CardType = {
   child: HTMLElement;
-  customCss?: string;
+  customStyles?: string;
 };
-export const Card = ({ child, customCss }: CardType) => {
+export const $card = ({ child, customStyles }: CardType) => {
   const cardWrapper = document.createElement("div");
-  const defaultCss =
+  const defaultStyles =
     "w-96 bg-white border-2 border-gray-300 p-4 rounded shadow-lg";
-  customCss
-    ? cardWrapper.classList.add(...twMerge(defaultCss, customCss).split(" "))
-    : cardWrapper.classList.add(...defaultCss.split(" "));
+  customStyles
+    ? cardWrapper.classList.add(
+        ...twMerge(defaultStyles, customStyles).split(" ")
+      )
+    : cardWrapper.classList.add(...defaultStyles.split(" "));
   cardWrapper.append(child);
   return cardWrapper;
 };

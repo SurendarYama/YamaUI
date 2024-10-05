@@ -4,7 +4,7 @@ type PopoverType = {
   onParentClick?: () => void;
 };
 
-export const Popover = ({ parent, child, onParentClick }: PopoverType) => {
+export const $popover = ({ parent, child, onParentClick }: PopoverType) => {
   const popoverWrapper = document.createElement("div");
   popoverWrapper.dataset.isOpen = "false";
   parent.classList.add("popover-parent", "relative");

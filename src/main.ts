@@ -1,18 +1,18 @@
 import "./style.css";
 import {
-  Button,
-  Accordion,
-  Alert,
-  Alert_Dialog,
-  Avatar,
-  Badge,
-  Breadcrumb,
-  Calendar,
-  Card,
-  Checkbox,
-  Collapsible,
-  Popover,
-  Combobox,
+  $button,
+  $accordion,
+  $alert,
+  $alert_dialog,
+  $avatar,
+  $badge,
+  $breadcrumb,
+  $calendar,
+  $card,
+  $checkbox,
+  $collapsible,
+  $popover,
+  $combobox,
 } from "@/components";
 import {
   createElement,
@@ -35,39 +35,39 @@ wrapper.append(MenuIcon.cloneNode(true), span);
 
 const app = document.getElementById("app");
 app?.classList.add("flex", "items-center", "space-y-5", "flex-col");
-const withIconBtn = Button({
+const withIconBtn = $button({
   variant: "with-icon",
   value: wrapper,
-  customCss: "w-32 p-2",
+  customStyles: "w-32 p-2",
 });
-const iconBtn = Button({
+const iconBtn = $button({
   variant: "icon",
   value: MenuIcon,
 });
 
-const primaryBtn = Button({
+const primaryBtn = $button({
   value: "Login",
 });
-const secondaryBtn = Button({
+const secondaryBtn = $button({
   variant: "secondary",
   value: "Login",
 });
-const destructiveBtn = Button({
+const destructiveBtn = $button({
   variant: "destructive",
   value: "Login",
 });
 
-const outlineBtn = Button({
+const outlineBtn = $button({
   variant: "outline",
   value: "Login",
 });
 
-const ghostBtn = Button({
+const ghostBtn = $button({
   variant: "ghost",
   value: "Login",
 });
 
-const linkBtn = Button({
+const linkBtn = $button({
   variant: "link",
   value: "Login",
 });
@@ -97,10 +97,10 @@ const icons = {
   collapse: createElement(Plus),
   expand: createElement(Minus),
 };
-const faq = Accordion(items, icons);
+const faq = $accordion(items, icons);
 
 primaryBtn.addEventListener("click", function () {
-  const saveDialog = Alert_Dialog({
+  const saveDialog = $alert_dialog({
     title: "Heading 1",
     des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     close: {
@@ -117,16 +117,16 @@ primaryBtn.addEventListener("click", function () {
   document.body.classList.add("overflow-hidden");
 });
 
-const calendarIconBtn = Button({
+const calendarIconBtn = $button({
   variant: "icon",
   value: createElement(CalendarIcon),
-  customCss: "relative",
+  customStyles: "relative",
 });
 
 calendarIconBtn.addEventListener("click", () => {
   const calendarElRef = document.getElementById("calendar");
   if (!calendarElRef) {
-    const calendarEl = Calendar(function (value) {
+    const calendarEl = $calendar(function (value) {
       alert(value);
       calendarEl?.remove();
     });
@@ -149,10 +149,10 @@ const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
 popoverBtnWrapperIcon.classList.add("size-4");
 popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
 
-const popoverBtn = Button({
+const popoverBtn = $button({
   variant: "with-icon",
   value: popoverBtnWrapper,
-  customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-100",
+  customStyles: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-100",
 });
 const popoverChild = document.createElement("ul");
 const listItem = Array(20);
@@ -164,9 +164,9 @@ for (const [index, item] of listItem.entries()) {
   popoverChild.append(itemWrapper);
 }
 
-const combobox = Popover({
+const combobox = $popover({
   parent: popoverBtn,
-  child: Combobox({
+  child: $combobox({
     items: [
       {
         label: "React",
@@ -221,38 +221,38 @@ app?.append(
   linkBtn,
   iconBtn,
   faq,
-  Alert({
+  $alert({
     icon: createElement(TriangleAlert),
     title: "Error",
     des: "Your session has expired. Please log in again",
-    customCss: "border-red-500 text-red-500",
+    customStyles: "border-red-500 text-red-500",
   }),
-  Alert({
+  $alert({
     icon: createElement(Check),
     title: "Success",
     des: "Log in successfully...",
-    customCss: "border-green-500 text-green-500",
+    customStyles: "border-green-500 text-green-500",
   }),
-  Alert({
+  $alert({
     icon: createElement(Handshake),
     title: "Greetings",
     des: "Have a awesome day",
-    customCss: "border-black text-black",
+    customStyles: "border-black text-black",
   }),
 
-  Avatar({
+  $avatar({
     src: "https://avatars.githubusercontent.com/u/125799445?v=4",
     fallbackText: "SY",
-    customCss: {
+    customStyles: {
       container: "size-14",
       avatar: "size-14",
     },
   }),
-  Badge({
+  $badge({
     value: "Badge",
-    customCss: "bg-red-600 hover:bg-red-500 rounded-full",
+    customStyles: "bg-purple-600 hover:bg-purple-500 rounded-full",
   }),
-  Breadcrumb(
+  $breadcrumb(
     [
       { title: "Home", href: "/home" },
       { title: "About", href: "/about" },
@@ -263,18 +263,19 @@ app?.append(
     createElement(ChevronRight)
   ),
   calendarIconBtn,
-  Card({
+  $card({
     child: cardChild,
-    // customCss: "text-sm px-6 py-2 shadow-none", // Collapsible Component
+    // customStyles: "text-sm px-6 py-2 shadow-none", // Collapsible Component
   }),
-  Checkbox({
+  $checkbox({
     nameAndId: "formCheckbox",
     defaultValue: true,
     checkboxLabelValue: "Accept all terms and conditions.",
     checkboxDisable: false,
-    onCheck: (e) => console.log(e.currentTarget.checked),
+    onCheck: (e: InputEvent) =>
+      console.log((e.currentTarget as HTMLInputElement)?.checked),
   }),
-  Collapsible("@peduarte starred 3 repositories", [
+  $collapsible("@peduarte starred 3 repositories", [
     "@radix-ui/primitives",
     "@radix-ui/colors",
     "@stitches/react",

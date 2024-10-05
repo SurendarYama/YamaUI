@@ -10,7 +10,7 @@ type ComboboxType = {
   onChange: (e: Event) => void;
 };
 
-export const Combobox = ({ items, onChange }: ComboboxType) => {
+export const $combobox = ({ items, onChange }: ComboboxType) => {
   const comboboxWrapper = document.createElement("div");
   comboboxWrapper.classList.add("flex", "flex-col");
   const searchSectionWrapper = document.createElement("div");

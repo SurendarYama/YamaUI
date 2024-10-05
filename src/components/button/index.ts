@@ -1,14 +1,14 @@
 import { twMerge } from "tailwind-merge";
 
 import {
-  primaryCss,
-  secondaryCss,
-  destructiveCss,
-  outlineCss,
-  ghostCss,
-  linkCss,
-  iconCss,
-  withIconCss,
+  primaryStyles,
+  secondaryStyles,
+  destructiveStyles,
+  outlineStyles,
+  ghostStyles,
+  linkStyles,
+  iconStyles,
+  withIconStyles,
 } from "./button.style";
 
 type ButtonConfig = {
@@ -23,46 +23,47 @@ type ButtonConfig = {
     | "with-icon"
     | "custom";
   value: string | HTMLElement | SVGElement | Node;
-  rounded?: boolean;
-  customCss?: string;
+  customStyles?: string;
 };
 
-export const Button = ({
+export const $button = ({
   variant = "primary",
   value,
-  rounded = false,
-  customCss,
+  customStyles,
 }: ButtonConfig) => {
-  const ele = document.createElement("button");
-  ele.append(value);
-  rounded && ele.classList.add("rounded-full");
+  const buttonEl = document.createElement("button");
+  buttonEl.append(value);
 
-  function applyCss(
-    $ele: HTMLElement,
-    $defaultCss: string,
-    $customCss?: string
+  function applyStyles(
+    ele: HTMLElement,
+    defaultStyles: string,
+    customStyles?: string
   ) {
-    $customCss
-      ? $ele.classList.add(...twMerge($defaultCss, $customCss).split(" "))
-      : $ele.classList.add(...$defaultCss.split(" "));
+    customStyles
+      ? ele.classList.add(...twMerge(defaultStyles, customStyles).split(" "))
+      : ele.classList.add(...defaultStyles.split(" "));
   }
 
-  if (variant === "primary") applyCss(ele, primaryCss, customCss);
-  else if (variant === "secondary") applyCss(ele, secondaryCss, customCss);
-  else if (variant === "destructive") applyCss(ele, destructiveCss, customCss);
-  else if (variant === "outline") applyCss(ele, outlineCss, customCss);
-  else if (variant === "ghost") applyCss(ele, ghostCss, customCss);
-  else if (variant === "link") applyCss(ele, linkCss, customCss);
-  else if (variant === "icon") applyCss(ele, iconCss, customCss);
+  if (variant === "primary") applyStyles(buttonEl, primaryStyles, customStyles);
+  else if (variant === "secondary")
+    applyStyles(buttonEl, secondaryStyles, customStyles);
+  else if (variant === "destructive")
+    applyStyles(buttonEl, destructiveStyles, customStyles);
+  else if (variant === "outline")
+    applyStyles(buttonEl, outlineStyles, customStyles);
+  else if (variant === "ghost")
+    applyStyles(buttonEl, ghostStyles, customStyles);
+  else if (variant === "link") applyStyles(buttonEl, linkStyles, customStyles);
+  else if (variant === "icon") applyStyles(buttonEl, iconStyles, customStyles);
   else if (variant === "with-icon") {
-    applyCss(ele, withIconCss, customCss);
-    ele.children[0].classList.add(
+    applyStyles(buttonEl, withIconStyles, customStyles);
+    buttonEl.children[0].classList.add(
       "flex",
       "justify-center",
       "items-center",
       "space-x-4"
     );
-  } else customCss && ele.classList.add(...customCss.split(" "));
+  } else customStyles && buttonEl.classList.add(...customStyles.split(" "));
 
-  return ele;
+  return buttonEl;
 };

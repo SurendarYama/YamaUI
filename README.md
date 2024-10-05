@@ -9,66 +9,32 @@
   Package dependencies: Tailwindcss, Tailwindcss merge, and Lucide.
 ```
 
-### Button Component
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-```ts
-import { Button } from "@/components";
-Button({
-  variant: "primary",
-  value: "Login",
-  rounded: true,
-  customCss: "bg-purple-600",
-});
-```
+- [Accordion](#accordion)
+- [Alert](#alert)
+- [Alert Dialog](#alert-dialog)
+- [Avatar](#avatar)
+- [Badge](#badge)
+- [Breadcrumb](#breadcrumb)
+- [Button Component](#button-component)
+  - [button option config objects](#button-option-config-objects)
+  - [icon button](#icon-button)
+  - [with icon button](#with-icon-button)
+- [Calendar](#calendar)
+- [Card](#card)
+- [Checkbox](#checkbox)
+- [Collapsiable](#collapsiable)
+- [Combobox](#combobox)
+- [Popover](#popover)
 
-#### button option config objects
-
-```
-    {
-        variants?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'icon' | 'with-icon' | 'custom',
-        value: string | HTMLElement,
-        rounded?: boolean,
-        customCss?: string
-    }
-```
-
-#### icon button
-
-```ts
-import { createElement, Menu } from "lucide";
-const icon = createElement(Menu);
-
-document.getElementById("app")?.append(
-  Button({
-    variant: "icon",
-    value: icon,
-  })
-);
-```
-
-#### with icon button
-
-```ts
-import { createElement, Menu } from "lucide";
-const icon = createElement(Menu);
-
-const span = document.createElement("span");
-span.append("Text");
-const wrapper = document.createElement("div");
-wrapper.append(icon, span);
-
-document.getElementById("app")?.append(
-  Button({
-    variant: "with-icon",
-    value: wrapper,
-  })
-);
-```
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ### Accordion
 
 ```ts
-import { Accordion } from "@/components";
+import { $accordion } from "@/components";
 import { createElement, Plus, Minus } from "lucide";
 
 const items = [
@@ -90,7 +56,7 @@ const icons = {
   collapse: createElement(Plus),
   expand: createElement(Minus),
 };
-const faq = Accordion(items, icons);
+const faq = $accordion(items, icons);
 
 const app = document.getElementById("app");
 app?.append(faq);
@@ -99,14 +65,14 @@ app?.append(faq);
 ### Alert
 
 ```ts
-import { Alert } from "@/components";
+import { $alert } from "@/components";
 import { createElement, TriangleAlert } from "lucide";
 
-const error = Alert({
+const error = $alert({
   icon: createElement(TriangleAlert),
   title: "Error",
   des: "Your session has expired. Please log in again",
-  customCss: "border-red-500 text-red-500",
+  customStyles: "border-red-500 text-red-500",
 });
 
 const app = document.getElementById("app");
@@ -116,13 +82,13 @@ app?.append(error);
 ### Alert Dialog
 
 ```ts
-import { Button, Alert_Dialog } from "@/components";
-const primaryBtn = Button({
+import { $button, $alert_dialog } from "@/components";
+const primaryBtn = $button({
   value: "Save",
 });
 
 primaryBtn.addEventListener("click", function () {
-  const saveDialog = Alert_Dialog({
+  const saveDialog = $alert_dialog({
     title: "Heading 1",
     des: " undergo a continuous change whereby, according to theory based on observed red shifts, all the galaxies recede from one another.",
     close: {
@@ -145,11 +111,11 @@ primaryBtn.addEventListener("click", function () {
 ### Avatar
 
 ```ts
-import { Avatar } from "@/components";
-const avatarEl = Avatar({
+import { $avatar } from "@/components";
+const avatarEl = $avatar({
   src: "https://avatars.githubusercontent.com/u/125799445?v=4",
   fallbackText: "SY",
-  customCss: {
+  customStyles: {
     container: "size-14",
     avatar: "size-14",
   },
@@ -161,11 +127,11 @@ document.getElementById("app").append(avatarEl);
 ### Badge
 
 ```ts
-import { Badge } from "@/components";
+import { $badge } from "@/components";
 document.getElementById("app").append(
-  Badge({
+  $badge({
     value: "Badge",
-    customCss: "bg-red-600 hover:bg-red-500 rounded-full",
+    customStyles: "bg-red-600 hover:bg-red-500 rounded-full",
   })
 );
 ```
@@ -173,11 +139,11 @@ document.getElementById("app").append(
 ### Breadcrumb
 
 ```ts
-import { Breadcrumb } from "@/components";
+import { $breadcrumb } from "@/components";
 import { createElement, ChevronRight } from "lucide";
 
 document.getElementById("app").append(
-  Breadcrumb(
+  $breadcrumb(
     [
       { title: "Home", href: "/home" },
       { title: "About", href: "/about" },
@@ -190,21 +156,78 @@ document.getElementById("app").append(
 );
 ```
 
+### Button Component
+
+```ts
+import { $button } from "@/components";
+$button({
+  variant: "primary",
+  value: "Login",
+  rounded: true,
+  customStyles: "bg-purple-600",
+});
+```
+
+#### button option config objects
+
+```
+    {
+        variants?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'icon' | 'with-icon' | 'custom',
+        value: string | HTMLElement,
+        customStyles?: string
+    }
+```
+
+#### icon button
+
+```ts
+import { $button } from "@/components";
+import { createElement, Menu } from "lucide";
+const icon = createElement(Menu);
+
+document.getElementById("app")?.append(
+  $button({
+    variant: "icon",
+    value: icon,
+  })
+);
+```
+
+#### with icon button
+
+```ts
+import { $button } from "@/components";
+import { createElement, Menu } from "lucide";
+const icon = createElement(Menu);
+
+const span = document.createElement("span");
+span.append("Text");
+const wrapper = document.createElement("div");
+wrapper.append(icon, span);
+
+document.getElementById("app")?.append(
+  $button({
+    variant: "with-icon",
+    value: wrapper,
+  })
+);
+```
+
 ### Calendar
 
 ```ts
-import { Button, Calendar } from "@/components";
+import { $button, $calendar } from "@/components";
 import { createElement, Calendar as CalendarIcon } from "lucide";
-const calendarIconBtn = Button({
+const calendarIconBtn = $button({
   variant: "icon",
   value: createElement(CalendarIcon),
-  customCss: "relative z-10",
+  customStyles: "relative z-10",
 });
 
 calendarIconBtn.addEventListener("click", () => {
   const calendarElRef = document.getElementById("calendar");
   if (!calendarElRef) {
-    const calendarEl = Calendar(function (value) {
+    const calendarEl = $calendar(function (value) {
       alert(value);
       calendarEl?.remove();
     });
@@ -222,15 +245,15 @@ document.getElementById("app").append(calendarIconBtn);
 ### Card
 
 ```ts
-import { Card } from "@/components";
+import { $card } from "@/components";
 
 const cardChild = document.createElement("div");
 cardChild.innerText = "Card";
 
 document.getElementBy("app")?.append(
-  Card({
+  $card({
     child: cardChild,
-    customCss: "text-purple-600 font-extrabold text-center",
+    customStyles: "text-purple-600 font-extrabold text-center",
   })
 );
 ```
@@ -238,15 +261,16 @@ document.getElementBy("app")?.append(
 ### Checkbox
 
 ```ts
-import { Checkbox } from "@/components";
+import { $checkbox } from "@/components";
 
 document.getElementBy("app")?.append(
-  Checkbox({
+  $checkbox({
     nameAndId: "formCheckbox",
     defaultValue: true,
     checkboxLabelValue: "Accept all terms and conditions.",
     checkboxDisable: false,
-    onCheck: (e) => console.log(e.currentTarget.checked),
+    onCheck: (e: InputEvent) =>
+      console.log((e.currentTarget as HTMLInputElement).checked),
   })
 );
 ```
@@ -254,11 +278,11 @@ document.getElementBy("app")?.append(
 ### Collapsiable
 
 ```ts
-import { Collapsiable } from "@/components";
+import { $collapsiable } from "@/components";
 document
   .getElementById("app")
   ?.append(
-    Collapsible("@peduarte starred 3 repositories", [
+    $collapsible("@peduarte starred 3 repositories", [
       "@radix-ui/primitives",
       "@radix-ui/colors",
       "@stitches/react",
@@ -266,43 +290,10 @@ document
   );
 ```
 
-### Popover
-
-```ts
-import { Popover } from "@/components";
-import { createElement, ChevronsUpDown } from "lucide";
-
-const popoverBtnWrapper = document.createElement("div");
-const popoverBtnWrapperText = document.createElement("span");
-popoverBtnWrapperText.append("Select Frameworks");
-const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
-popoverBtnWrapperIcon.classList.add("size-4");
-popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
-
-const popoverBtn = Button({
-  variant: "with-icon",
-  value: popoverBtnWrapper,
-  customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-300",
-});
-const popoverChild = document.createElement("li");
-const listItem = Array(20);
-listItem.fill("Item");
-for (const [index, item] of listItem.entries()) {
-  const itemWrapper = document.createElement("ul");
-  itemWrapper.classList.add("p-2");
-  itemWrapper.append(`${item}-${index + 1}`);
-  popoverChild.append(itemWrapper);
-}
-
-document
-  .getElementById("app")
-  ?.append(Popover({ parent: popoverBtn, child: popoverChild }));
-```
-
 ### Combobox
 
 ```ts
-import { Button, Popover, Combobox } from "@/components";
+import { $button, $popover, $combobox } from "@/components";
 import { createElement, ChevronsUpDown } from "lucide";
 
 const popoverBtnWrapper = document.createElement("div");
@@ -313,15 +304,15 @@ const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
 popoverBtnWrapperIcon.classList.add("size-4");
 popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
 
-const popoverBtn = Button({
+const popoverBtn = $button({
   variant: "with-icon",
   value: popoverBtnWrapper,
-  customCss: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-100",
+  customStyles: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-100",
 });
 
-const combobox = Popover({
+const combobox = $popover({
   parent: popoverBtn,
-  child: Combobox({
+  child: $combobox({
     items: [
       {
         label: "React",
@@ -360,4 +351,37 @@ const combobox = Popover({
 });
 
 document.getElementById("app")?.append(combobox);
+```
+
+### Popover
+
+```ts
+import { $popover, $button } from "@/components";
+import { createElement, ChevronsUpDown } from "lucide";
+
+const popoverBtnWrapper = document.createElement("div");
+const popoverBtnWrapperText = document.createElement("span");
+popoverBtnWrapperText.append("Select Frameworks");
+const popoverBtnWrapperIcon = createElement(ChevronsUpDown);
+popoverBtnWrapperIcon.classList.add("size-4");
+popoverBtnWrapper.append(popoverBtnWrapperText, popoverBtnWrapperIcon);
+
+const popoverBtn = $button({
+  variant: "with-icon",
+  value: popoverBtnWrapper,
+  customStyles: "text-sm p-[.4rem] bg-white rounded-md hover:bg-gray-300",
+});
+const popoverChild = document.createElement("li");
+const listItem = Array(20);
+listItem.fill("Item");
+for (const [index, item] of listItem.entries()) {
+  const itemWrapper = document.createElement("ul");
+  itemWrapper.classList.add("p-2");
+  itemWrapper.append(`${item}-${index + 1}`);
+  popoverChild.append(itemWrapper);
+}
+
+document
+  .getElementById("app")
+  ?.append($popover({ parent: popoverBtn, child: popoverChild }));
 ```

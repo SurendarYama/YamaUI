@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "doctoc": "doctoc README.md --github",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

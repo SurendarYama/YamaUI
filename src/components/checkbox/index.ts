@@ -6,7 +6,7 @@ type CheckboxType = {
   onCheck: (e: any) => void;
 };
 
-export const Checkbox = ({
+export const $checkbox = ({
   nameAndId,
   defaultValue,
   checkboxLabelValue,
