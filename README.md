@@ -341,12 +341,6 @@ const combobox = $popover({
       }
     },
   }),
-  onParentClick: () => {
-    const comboboxSearchInput = document.getElementsByName(
-      "combobox-search-input"
-    );
-    comboboxSearchInput[0]?.focus();
-  },
 });
 
 document.getElementById("app")?.append(combobox);

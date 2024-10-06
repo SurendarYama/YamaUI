@@ -1,10 +1,9 @@
 type PopoverType = {
   parent: HTMLElement;
   child: HTMLElement;
-  onParentClick?: () => void;
 };
 
-export const $popover = ({ parent, child, onParentClick }: PopoverType) => {
+export const $popover = ({ parent, child }: PopoverType) => {
   const popoverWrapper = document.createElement("div");
   popoverWrapper.dataset.isOpen = "false";
   parent.classList.add("popover-parent", "relative");
@@ -36,7 +35,7 @@ export const $popover = ({ parent, child, onParentClick }: PopoverType) => {
       childWrapper.remove();
       popoverWrapper.dataset.isOpen = "false";
     }
-    onParentClick && onParentClick();
+    document.dispatchEvent(new CustomEvent("popoverParentClick"));
   });
   document.addEventListener("click", () => {
     childWrapper && childWrapper.remove();

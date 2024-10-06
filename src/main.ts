@@ -196,12 +196,6 @@ const combobox = $popover({
       }
     },
   }),
-  onParentClick: () => {
-    const comboboxSearchInput = document.getElementsByName(
-      "combobox-search-input"
-    );
-    comboboxSearchInput[0]?.focus();
-  },
 });
 app?.classList.add(
   "flex",

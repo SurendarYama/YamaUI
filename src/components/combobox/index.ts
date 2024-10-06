@@ -26,15 +26,10 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
     "focus:ring-[0rem]",
     "outline-none"
   );
-  const searchInputAttrs: { attrName: string; value: string }[] = [
-    { attrName: "type", value: "text" },
-    { attrName: "placeholder", value: "Search frameworks..." },
-    { attrName: "name", value: "combobox-search-input" },
-    { attrName: "autocomplete", value: "off" },
-  ];
-  for (const { attrName, value } of searchInputAttrs) {
-    searchInput.setAttribute(attrName, value);
-  }
+
+  searchInput.setAttribute("type", "text");
+  searchInput.setAttribute("placeholder", "Search frameworks...");
+  searchInput.setAttribute("autocomplete", "off");
 
   const borderBottomSpan = document.createElement("span");
   borderBottomSpan.classList.add("border-b-2");
@@ -94,6 +89,9 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
     }
   });
 
+  document.addEventListener("popoverParentClick", () => {
+    searchInput.focus();
+  });
   searchSectionWrapper.append(searchIcon, searchInput);
   comboboxWrapper.append(
     searchSectionWrapper,
