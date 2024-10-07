@@ -35,7 +35,7 @@ export const $popover = ({ parent, child }: PopoverType) => {
       childWrapper.remove();
       popoverWrapper.dataset.isOpen = "false";
     }
-    document.dispatchEvent(new CustomEvent("popoverParentClick"));
+    document.dispatchEvent(new CustomEvent("popoverparentclick"));
   });
   document.addEventListener("click", () => {
     childWrapper && childWrapper.remove();

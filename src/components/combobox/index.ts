@@ -89,7 +89,7 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
     }
   });
 
-  document.addEventListener("popoverParentClick", () => {
+  document.addEventListener("popoverparentclick", () => {
     searchInput.focus();
   });
   searchSectionWrapper.append(searchIcon, searchInput);
