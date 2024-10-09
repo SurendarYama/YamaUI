@@ -7,10 +7,12 @@ type Item = {
 
 type ComboboxType = {
   items: Item[];
-  onChange: (e: Event) => void;
+  onChange: (selectedItem: string | null) => void;
 };
 
 export const $combobox = ({ items, onChange }: ComboboxType) => {
+  let selectedItemIndex = 0;
+  // let previousSelectedItemIndex = 0;
   const comboboxWrapper = document.createElement("div");
   comboboxWrapper.classList.add("flex", "flex-col");
   const searchSectionWrapper = document.createElement("div");
@@ -28,56 +30,66 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
   );
 
   searchInput.setAttribute("type", "text");
-  searchInput.setAttribute("placeholder", "Search frameworks...");
+  searchInput.setAttribute("placeholder", "Search Frameworks...");
   searchInput.setAttribute("autocomplete", "off");
 
   const borderBottomSpan = document.createElement("span");
   borderBottomSpan.classList.add("border-b-2");
 
-  const frameworksListItemsWrapper = document.createElement("ul");
-  frameworksListItemsWrapper.setAttribute("id", "frameworksListItemsWrapper");
-  frameworksListItemsWrapper.classList.add("text-sm");
+  const comboboxListItemsWrapper = document.createElement("ul");
+  comboboxListItemsWrapper.classList.add("text-sm");
+  const checkIcon = createElement(Check);
+  checkIcon.classList.add("size-4", "text-gray-700");
 
   const buildItems = (parent: HTMLUListElement, items: Item[]) => {
-    for (const item of items) {
-      const frameworkItem = document.createElement("li");
-      frameworkItem.addEventListener("click", handleClick);
-      frameworkItem.classList.add(
+    for (const [itemIndex, item] of items.entries()) {
+      const comboboxItem = document.createElement("li");
+      comboboxItem.addEventListener("click", handleClick);
+      itemIndex === 0 && comboboxItem.classList.add("bg-zinc-200");
+
+      comboboxItem.addEventListener("mouseover", () => {
+        comboboxListItemsWrapper.children[selectedItemIndex].classList.remove(
+          "bg-zinc-200"
+        );
+        comboboxListItemsWrapper.children[itemIndex].classList.add(
+          "bg-zinc-200"
+        );
+        selectedItemIndex = itemIndex;
+      });
+      comboboxItem.classList.add(
         "flex",
         "justify-between",
         "items-center",
-        "p-2",
-        "hover:bg-gray-100"
+        "p-2"
       );
-      const checkIcon = createElement(Check);
-      checkIcon.classList.add("size-4", "text-gray-700");
+
       item.value === selectedItem
-        ? frameworkItem.append(item.value, checkIcon)
-        : frameworkItem.append(item.value);
-      parent.append(frameworkItem);
+        ? comboboxItem.append(item.value, checkIcon)
+        : comboboxItem.append(item.value);
+      parent.append(comboboxItem);
     }
   };
   const handleClick = (e: Event) => {
-    onChange(e);
+    onChange((e.target as HTMLSpanElement)!.textContent);
     searchInput.value = "";
-    frameworksListItemsWrapper.innerHTML = "";
+    comboboxListItemsWrapper.innerHTML = "";
     selectedItem = (e.target as HTMLSpanElement).textContent;
-    buildItems(frameworksListItemsWrapper, items);
+    buildItems(comboboxListItemsWrapper, items);
   };
-  buildItems(frameworksListItemsWrapper, items);
+  buildItems(comboboxListItemsWrapper, items);
 
   searchInput.addEventListener("click", (e) => e.stopPropagation());
   searchInput.addEventListener("input", (e) => {
     const inputValue = (e.target as HTMLInputElement).value;
     if (!inputValue) {
-      frameworksListItemsWrapper.innerHTML = "";
-      buildItems(frameworksListItemsWrapper, items);
+      comboboxListItemsWrapper.innerHTML = "";
+      buildItems(comboboxListItemsWrapper, items);
     } else {
       const newItems = items.filter((item) =>
         item.value.toLowerCase().includes(inputValue.toLowerCase())
       );
-      frameworksListItemsWrapper.innerHTML = "";
-      buildItems(frameworksListItemsWrapper, newItems);
+      comboboxListItemsWrapper.innerHTML = "";
+      buildItems(comboboxListItemsWrapper, newItems);
       const childWrapper = document.getElementsByClassName(
         "popover-childwrapper"
       )[0] as HTMLElement;
@@ -92,11 +104,60 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
   document.addEventListener("popoverparentclick", () => {
     searchInput.focus();
   });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const selectedComboboxListItem =
+        comboboxListItemsWrapper.children[selectedItemIndex];
+      onChange(selectedComboboxListItem.textContent);
+
+      const popoverForCombobox = document.getElementById(
+        "popover-for-combobox"
+      );
+      selectedComboboxListItem.append(checkIcon);
+      popoverForCombobox!.dataset.isOpen = "false";
+      popoverForCombobox?.click();
+      selectedItemIndex = 0;
+    }
+
+    if (e.key === "ArrowDown") {
+      if (selectedItemIndex < comboboxListItemsWrapper.children.length - 1) {
+        comboboxListItemsWrapper.children[selectedItemIndex].classList.remove(
+          "bg-zinc-200"
+        );
+        comboboxListItemsWrapper.children[selectedItemIndex + 1].classList.add(
+          "bg-zinc-200"
+        );
+
+        selectedItemIndex = selectedItemIndex + 1;
+      }
+    }
+
+    if (e.key === "ArrowUp") {
+      if (selectedItemIndex > 0) {
+        comboboxListItemsWrapper.children[selectedItemIndex].classList.remove(
+          "bg-zinc-200"
+        );
+        comboboxListItemsWrapper.children[selectedItemIndex - 1].classList.add(
+          "bg-zinc-200"
+        );
+        selectedItemIndex = selectedItemIndex - 1;
+      }
+    }
+  });
+
+  document.addEventListener("popoverclickoutside", () => {
+    comboboxListItemsWrapper.children[selectedItemIndex].classList.remove(
+      "bg-zinc-200"
+    );
+    comboboxListItemsWrapper.children[0].classList.add("bg-zinc-200");
+    selectedItemIndex = 0;
+  });
   searchSectionWrapper.append(searchIcon, searchInput);
   comboboxWrapper.append(
     searchSectionWrapper,
     borderBottomSpan,
-    frameworksListItemsWrapper
+    comboboxListItemsWrapper
   );
   return comboboxWrapper;
 };

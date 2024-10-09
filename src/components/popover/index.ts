@@ -1,10 +1,12 @@
 type PopoverType = {
   parent: HTMLElement;
   child: HTMLElement;
+  popoverId: string;
 };
 
-export const $popover = ({ parent, child }: PopoverType) => {
+export const $popover = ({ parent, child, popoverId }: PopoverType) => {
   const popoverWrapper = document.createElement("div");
+  popoverWrapper.setAttribute("id", popoverId);
   popoverWrapper.dataset.isOpen = "false";
   parent.classList.add("popover-parent", "relative");
   const childWrapper = document.createElement("div");
@@ -38,6 +40,8 @@ export const $popover = ({ parent, child }: PopoverType) => {
     document.dispatchEvent(new CustomEvent("popoverparentclick"));
   });
   document.addEventListener("click", () => {
+    document.dispatchEvent(new CustomEvent("popoverclickoutside"));
+    popoverWrapper.dataset.isOpen = "false";
     childWrapper && childWrapper.remove();
   });
   popoverWrapper.append(parent);

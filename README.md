@@ -310,34 +310,33 @@ const popoverBtn = $button({
 });
 
 const combobox = $popover({
+  popoverId: "popover-for-combobox",
   parent: popoverBtn,
   child: $combobox({
     items: [
       {
-        label: "React",
-        value: "React",
+        label: "Remix.js",
+        value: "Remix.js",
       },
       {
-        label: "Svelte",
-        value: "Svelte",
+        label: "Next.js",
+        value: "Next.js",
       },
       {
         label: "Angular",
         value: "Angular",
       },
       {
-        label: "Vue",
-        value: "Vue",
+        label: "Nuxt.js",
+        value: "Nuxt.js",
       },
     ],
-    onChange: (e: Event) => {
-      if (
-        popoverBtn.firstElementChild &&
-        popoverBtn.firstElementChild.firstElementChild
-      ) {
-        popoverBtn.firstElementChild.firstElementChild.textContent = (
-          e.target as HTMLSpanElement
-        ).textContent;
+    onChange: (selectedItem) => {
+      const comboboxButtonContent = document.getElementById(
+        "combobox-button-content"
+      );
+      if (comboboxButtonContent) {
+        comboboxButtonContent.textContent = selectedItem;
       }
     },
   }),
