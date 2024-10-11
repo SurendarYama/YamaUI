@@ -12,7 +12,6 @@ type ComboboxType = {
 
 export const $combobox = ({ items, onChange }: ComboboxType) => {
   let selectedItemIndex = 0;
-  // let previousSelectedItemIndex = 0;
   const comboboxWrapper = document.createElement("div");
   comboboxWrapper.classList.add("flex", "flex-col");
   const searchSectionWrapper = document.createElement("div");
@@ -69,12 +68,18 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
       parent.append(comboboxItem);
     }
   };
-  const handleClick = (e: Event) => {
-    onChange((e.target as HTMLSpanElement)!.textContent);
+
+  const resetSearchInput = (currentselectedComboboxListItem: string) => {
     searchInput.value = "";
     comboboxListItemsWrapper.innerHTML = "";
-    selectedItem = (e.target as HTMLSpanElement).textContent;
+    selectedItem = currentselectedComboboxListItem;
     buildItems(comboboxListItemsWrapper, items);
+  };
+  const handleClick = (e: Event) => {
+    const currentselectedComboboxListItem = (e.target as HTMLSpanElement)!
+      .textContent;
+    onChange(currentselectedComboboxListItem);
+    resetSearchInput(currentselectedComboboxListItem!);
   };
   buildItems(comboboxListItemsWrapper, items);
 
@@ -109,8 +114,9 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
     if (e.key === "Enter") {
       const selectedComboboxListItem =
         comboboxListItemsWrapper.children[selectedItemIndex];
-      onChange(selectedComboboxListItem.textContent);
-
+      const currentselectedComboboxListItem =
+        selectedComboboxListItem.textContent;
+      onChange(currentselectedComboboxListItem);
       const popoverForCombobox = document.getElementById(
         "popover-for-combobox"
       );
@@ -118,6 +124,7 @@ export const $combobox = ({ items, onChange }: ComboboxType) => {
       popoverForCombobox!.dataset.isOpen = "false";
       popoverForCombobox?.click();
       selectedItemIndex = 0;
+      resetSearchInput(currentselectedComboboxListItem!);
     }
 
     if (e.key === "ArrowDown") {

@@ -17,7 +17,7 @@ export const $accordion = (items: AccordionItem[], icons: AccordionIcons) => {
     "items-center"
   );
   for (const icon of [icons.expand, icons.collapse]) {
-    icon.classList.add("size-4", "text-gray-400");
+    icon.classList.add("size-4", "text-gray-700", "stroke-[.19rem]");
   }
   items.map((item) => {
     const itemWrapper = document.createElement("div");
